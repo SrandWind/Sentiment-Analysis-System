@@ -451,7 +451,7 @@ const Metrics: React.FC = () => {
 
         {/* Row 1: Core Metrics */}
         <Row gutter={[24, 24]} className="metrics-row">
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card className="metric-card highlight" title="准确率">
               <div className="metric-content">
                 <Statistic
@@ -467,7 +467,7 @@ const Metrics: React.FC = () => {
               <div className="metric-sub">测试集整体准确率</div>
             </Card>
           </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card className="metric-card" title="F1 Score">
               <div className="metric-content">
                 <Statistic
@@ -483,7 +483,7 @@ const Metrics: React.FC = () => {
               <div className="metric-sub">精确率与召回率的调和平均</div>
             </Card>
           </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card className="metric-card" title="AUC-ROC">
               <div className="metric-content">
                 <Statistic
@@ -499,36 +499,11 @@ const Metrics: React.FC = () => {
               <div className="metric-sub">曲线下面积衡量指标</div>
             </Card>
           </Col>
-          <Col xs={24} sm={12} lg={6}>
-            <Card className="metric-card" title="Validation Loss">
-              <div className="metric-content">
-                <Statistic
-                  value={displayValLoss}
-                  precision={3}
-                  valueStyle={{ color: getMetricColor(displayValLoss, 'loss') }}
-                />
-              </div>
-              <div className="metric-sub">验证集交叉熵损失 (越低越好)</div>
-            </Card>
-          </Col>
         </Row>
 
         {/* Row 2: Classification Metrics */}
         <Row gutter={[24, 24]} className="metrics-row">
-          <Col xs={24} sm={12} lg={6}>
-            <Card className="metric-card" title="Average Precision">
-              <div className="metric-content">
-                <Statistic
-                  value={displayData.overall.ap}
-                  precision={2}
-                  suffix="%"
-                  valueStyle={{ color: getMetricColor(displayData.overall.ap, 'percentage') }}
-                />
-              </div>
-              <div className="metric-sub">PR 曲线下面积 (越低 recall 时 Precision 越好)</div>
-            </Card>
-          </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card className="metric-card" title="Precision">
               <div className="metric-content">
                 <Statistic
@@ -541,20 +516,7 @@ const Metrics: React.FC = () => {
               <div className="metric-sub">预测为正的样本中实际为正的比例</div>
             </Card>
           </Col>
-          <Col xs={24} sm={12} lg={6}>
-            <Card className="metric-card" title="Recall">
-              <div className="metric-content">
-                <Statistic
-                  value={displayData.overall.recall}
-                  precision={1}
-                  suffix="%"
-                  valueStyle={{ color: getMetricColor(displayData.overall.recall, 'percentage') }}
-                />
-              </div>
-              <div className="metric-sub">实际为正的样本中被正确预测的比例（宏平均）</div>
-            </Card>
-          </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card className="metric-card" title="Emotion MAE">
               <div className="metric-content">
                 <Statistic
@@ -566,34 +528,16 @@ const Metrics: React.FC = () => {
               <div className="metric-sub">情感强度预测误差 (越低越好)</div>
             </Card>
           </Col>
-        </Row>
-
-        {/* Row 3: Output Quality Metrics */}
-        <Row gutter={[24, 24]} className="metrics-row">
-          <Col xs={24} sm={12} lg={12}>
-            <Card className="metric-card" title="JSON Parse Rate">
+          <Col xs={24} sm={12} lg={8}>
+            <Card className="metric-card" title="Validation Loss">
               <div className="metric-content">
                 <Statistic
-                  value={displayData.overall.jsonParseRate}
-                  precision={1}
-                  suffix="%"
-                  valueStyle={{ color: getMetricColor(displayData.overall.jsonParseRate, 'percentage') }}
+                  value={displayValLoss}
+                  precision={3}
+                  valueStyle={{ color: getMetricColor(displayValLoss, 'loss') }}
                 />
               </div>
-              <div className="metric-sub">模型输出 JSON 格式正确率 (越高越好)</div>
-            </Card>
-          </Col>
-          <Col xs={24} sm={12} lg={12}>
-            <Card className="metric-card" title="CoT Complete Rate">
-              <div className="metric-content">
-                <Statistic
-                  value={displayData.overall.cotCompleteRate}
-                  precision={1}
-                  suffix="%"
-                  valueStyle={{ color: getMetricColor(displayData.overall.cotCompleteRate, 'percentage') }}
-                />
-              </div>
-              <div className="metric-sub">思维链推理完整率 (越高越好)</div>
+              <div className="metric-sub">验证集交叉熵损失 (越低越好)</div>
             </Card>
           </Col>
         </Row>
