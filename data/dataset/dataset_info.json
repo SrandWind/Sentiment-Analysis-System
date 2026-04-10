@@ -1,0 +1,42 @@
+{
+  "cmacd_emotion": {
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    },
+    "file_name": "alpaca_format.jsonl"
+  },
+  "cmacd_train": {
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    },
+    "file_name": "train.json"
+  },
+  "cmacd_dev": {
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    },
+    "file_name": "dev.json"
+  },
+  "cmacd_test": {
+    "formatting": "alpaca",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    },
+    "file_name": "test.json"
+  }
+}

@@ -1,0 +1,517 @@
+@import '../assets/styles/design-system';
+
+.metrics-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 60px 24px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60%;
+    background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle at center, rgba(6, 182, 212, 0.04) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// Page Header (Enhanced)
+.page-header {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fade-up $duration-slower $ease-in-out both;
+  position: relative;
+  z-index: 1;
+}
+
+.page-title {
+  font-family: 'Source Han Serif SC', 'IBM Plex Serif', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  color: $text-primary;
+  margin-bottom: 16px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.08);
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: $text-secondary;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 300;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+// Metrics Row
+.metrics-row {
+  margin-bottom: 24px;
+}
+
+// Metric Cards (Enhanced)
+.metric-card {
+  background: linear-gradient(135deg, var(--theme-bg-card) 0%, rgba(36, 48, 67, 0.35) 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 20px;
+  backdrop-filter: blur(16px) saturate(1.2);
+  animation: fade-up $duration-slow $ease-in-out both;
+  height: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: all $duration-normal $ease-smooth;
+  position: relative;
+  overflow: hidden;
+
+  [data-theme='light'] & {
+    background: linear-gradient(135deg, rgba(248, 247, 245, 0.95) 0%, rgba(242, 241, 239, 0.85) 100%);
+    border-color: rgba(159, 155, 148, 0.2);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0;
+    transition: opacity $duration-normal $ease-smooth;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: var(--theme-border-strong);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 95, 58, 0.1);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .metric-icon {
+      opacity: 1;
+      transform: scale(1.15) rotate(5deg);
+    }
+  }
+
+  &.highlight {
+    border-color: rgba(255, 95, 58, 0.35);
+    box-shadow: 0 0 40px rgba(255, 95, 58, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  .ant-card-head {
+    background: transparent;
+    border-bottom-color: var(--theme-border);
+    padding: 16px 24px;
+
+    .ant-card-head-title {
+      font-family: 'Source Han Serif SC', 'IBM Plex Serif', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--theme-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+  }
+
+  .ant-card-body {
+    padding: 24px;
+  }
+}
+
+.metric-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+
+  .ant-statistic {
+    .ant-statistic-content {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 42px;
+      font-weight: 700;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.metric-icon {
+  font-size: 32px;
+  opacity: 0.4;
+  transition: all $duration-normal $ease-smooth;
+  color: var(--theme-text-tertiary);
+
+  .metric-card:hover & {
+    opacity: 1;
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 0 12px rgba(255, 95, 58, 0.4));
+  }
+}
+
+.metric-sub {
+  font-size: 13px;
+  color: var(--theme-text-tertiary);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+// Chart Cards (Enhanced)
+.chart-card {
+  background: linear-gradient(135deg, var(--theme-bg-card) 0%, rgba(36, 48, 67, 0.35) 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 20px;
+  backdrop-filter: blur(16px) saturate(1.2);
+  margin-bottom: 24px;
+  animation: fade-up $duration-slow $ease-in-out 0.2s both;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: box-shadow $duration-normal $ease-smooth;
+
+  [data-theme='light'] & {
+    background: linear-gradient(135deg, rgba(248, 247, 245, 0.95) 0%, rgba(242, 241, 239, 0.85) 100%);
+    border-color: rgba(159, 155, 148, 0.2);
+  }
+
+  &:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 95, 58, 0.1);
+  }
+
+  .ant-card-head {
+    background: transparent;
+    border-bottom-color: var(--theme-border);
+    padding: 16px 24px;
+  }
+
+  .ant-card-body {
+    padding: 24px;
+  }
+}
+
+.chart-header {
+  font-family: 'Source Han Serif SC', 'IBM Plex Serif', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--theme-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: transform $duration-fast $ease-smooth;
+
+  .chart-card:hover & {
+    transform: translateX(4px);
+  }
+}
+
+// Confusion Matrix (Enhanced)
+.confusion-matrix-card {
+  .confusion-matrix {
+    overflow: auto;
+  }
+
+  .confusion-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+
+    th, td {
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      text-align: center;
+      padding: 10px 8px;
+      transition: all 0.2s ease;
+    }
+
+    th {
+      background: rgba(15, 23, 36, 0.5);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      color: #f1f5f9 !important;
+    }
+
+    // First column (row labels) styling
+    tbody td:first-child {
+      background: rgba(15, 23, 36, 0.8) !important;
+      color: #f1f5f9 !important;
+      font-weight: 600 !important;
+      text-align: left !important;
+      padding-left: 16px !important;
+      position: sticky;
+      left: 0;
+      z-index: 2;
+    }
+
+    td {
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(255, 107, 74, 0.4);
+        z-index: 1;
+        position: relative;
+      }
+    }
+
+    tbody tr:hover td {
+      background: rgba(255, 95, 58, 0.1) !important;
+    }
+
+    tbody tr:hover td:first-child {
+      background: rgba(255, 95, 58, 0.2) !important;
+    }
+  }
+}
+
+// Training Card (Enhanced)
+.training-card {
+  .chart-title {
+    font-family: 'Source Han Serif SC', 'IBM Plex Serif', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--theme-text-primary);
+    margin-bottom: 16px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+
+  .recharts-wrapper {
+    margin: 0 auto;
+    filter: drop-shadow(0 0 20px rgba(255, 95, 58, 0.1));
+  }
+
+  .recharts-line-curve {
+    stroke-width: 3px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+
+  .recharts-dot {
+    stroke-width: 2px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  }
+
+  .recharts-tooltip-wrapper {
+    .recharts-default-tooltip {
+      background: var(--theme-bg-primary) !important;
+      border: 1px solid var(--theme-border) !important;
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+    }
+  }
+}
+
+// Table Card (Enhanced)
+.table-card {
+  background: linear-gradient(135deg, var(--theme-bg-card) 0%, rgba(36, 48, 67, 0.35) 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 20px;
+  backdrop-filter: blur(16px) saturate(1.2);
+  animation: fade-up $duration-slow $ease-in-out 0.3s both;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  [data-theme='light'] & {
+    background: linear-gradient(135deg, rgba(248, 247, 245, 0.95) 0%, rgba(242, 241, 239, 0.85) 100%);
+    border-color: rgba(159, 155, 148, 0.2);
+  }
+
+  .ant-card-head {
+    background: transparent;
+    border-bottom-color: var(--theme-border);
+
+    .ant-card-head-title {
+      font-family: 'Source Han Serif SC', 'IBM Plex Serif', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--theme-text-primary);
+      padding: 16px 0;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+.metrics-table {
+  .ant-table {
+    background: transparent;
+    color: var(--theme-text-primary);
+  }
+
+  .ant-table-thead > tr > th {
+    background: linear-gradient(135deg, var(--theme-bg-secondary) 0%, rgba(36, 48, 67, 0.5) 100%);
+    border-bottom-color: var(--theme-border-strong);
+    color: var(--theme-text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(8px);
+
+    [data-theme='light'] & {
+      background: linear-gradient(135deg, rgba(242, 241, 239, 0.9) 0%, rgba(242, 241, 239, 0.7) 100%);
+    }
+  }
+
+  .ant-table-tbody > tr {
+    transition: all $duration-fast $ease-smooth;
+
+    &:hover {
+      td {
+        background: rgba(255, 95, 58, 0.06);
+      }
+    }
+  }
+
+  .ant-table-tbody > tr > td {
+    border-bottom-color: var(--theme-border);
+    padding: 16px 24px;
+    transition: all $duration-fast $ease-smooth;
+  }
+
+  .ant-tag {
+    font-weight: 600;
+    border: none;
+    padding: 4px 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.metric-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Export Button (Enhanced)
+.ant-btn {
+  &.ant-btn-sm {
+    font-size: 13px;
+    padding: 4px 12px;
+    transition: all $duration-fast $ease-smooth;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(255, 107, 74, 0.3);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Progress bar customization (Enhanced)
+.ant-progress {
+  .ant-progress-bg {
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: width $duration-normal $ease-in-out;
+  }
+
+  .ant-progress-text {
+    font-size: 12px;
+    color: var(--theme-text-secondary);
+    font-weight: 500;
+  }
+}
+
+// Animations (Enhanced)
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Responsive (Enhanced)
+@media (max-width: 768px) {
+  .metrics-page {
+    padding: 24px 16px;
+
+    &::before,
+    &::after {
+      filter: blur(60px);
+    }
+  }
+
+  .page-header {
+    animation: fade-in $duration-slow $ease-in-out both;
+  }
+
+  .metric-content {
+    .ant-statistic-content {
+      font-size: 32px !important;
+    }
+  }
+
+  .metrics-row {
+    .ant-col {
+      margin-bottom: 16px;
+    }
+  }
+
+  .metric-card {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

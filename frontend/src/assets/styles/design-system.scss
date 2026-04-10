@@ -1,0 +1,1212 @@
+// =============================================================================
+// Neural Academia 设计系统 - 神经学术风格
+// 情感分析系统毕业设计
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 设计理念：Neural Academia
+// - 学术严谨性 + 神经网络美学
+// - 深色主题优先，支持浅色主题切换
+// - 莫兰迪低饱和度色系 + 珊瑚橙强调
+// - 精致科技学术风，答辩高分界面
+// -----------------------------------------------------------------------------
+
+// =============================================================================
+// 主题模式 CSS 变量（支持一键切换）
+// =============================================================================
+
+// 深色主题（答辩场景）- 深空灰蓝基调，精致学术风
+:root,
+[data-theme='dark'] {
+  // 主背景 - 深空灰蓝 #0f1724
+  --theme-bg-primary: #0f1724;
+  --theme-bg-secondary: #1a2332;
+  --theme-bg-tertiary: #233044;
+  --theme-bg-card: rgba(35, 48, 68, 0.7);
+  --theme-bg-glass: rgba(15, 23, 36, 0.75);
+  --theme-bg-layout: #0f1724;
+
+  // 文本层次 - 精致学术风
+  --theme-text-primary: #e2e8f0;
+  --theme-text-secondary: #94a3b8;
+  --theme-text-tertiary: #64748b;
+  --theme-text-muted: #475569;
+
+  // 边框 - 微妙高光
+  --theme-border: rgba(148, 163, 184, 0.12);
+  --theme-border-strong: rgba(148, 163, 184, 0.2);
+  --theme-glass: rgba(15, 23, 36, 0.6);
+
+  // 强调色 - 珊瑚橙 #ff6b4a
+  --accent-primary: #ff6b4a;
+  --accent-secondary: #ff8a6b;
+  --accent-tertiary: #ffb8a8;
+  --accent-glow: rgba(255, 107, 74, 0.35);
+  --accent-glow-strong: rgba(255, 107, 74, 0.5);
+
+  // 辅助强调色 - 柔和青蓝色 #3cc3c7
+  --accent-teal: #3cc3c7;
+  --accent-teal-glow: rgba(60, 195, 199, 0.3);
+  --accent-purple: #a894c4;
+  --accent-purple-glow: rgba(168, 148, 196, 0.2);
+
+  // 情绪颜色 - 低饱和度渐变
+  --emotion-positive: #4ade80;
+  --emotion-negative: #f87171;
+  --emotion-angry: #ef4444;
+  --emotion-sad: #60a5fa;
+  --emotion-fear: #c084fc;
+  --emotion-neutral: #94a3b8;
+
+  // 多层背景光晕效果 - 克制科技感
+  --glow-coral: radial-gradient(circle at 50% 0%, rgba(255, 107, 74, 0.08) 0%, transparent 65%);
+  --glow-coral-strong: radial-gradient(circle at 50% 0%, rgba(255, 107, 74, 0.12) 0%, transparent 50%);
+  --glow-teal: radial-gradient(circle at 80% 20%, rgba(60, 195, 199, 0.06) 0%, transparent 55%);
+  --glow-purple: radial-gradient(circle at 20% 80%, rgba(168, 148, 196, 0.05) 0%, transparent 55%);
+  --glow-amber: radial-gradient(circle at 30% 60%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+
+  // 成功/警告/错误 - 学术风格
+  --success: #4ade80;
+  --success-bg: rgba(74, 222, 128, 0.12);
+  --success-glow: rgba(74, 222, 128, 0.25);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.12);
+  --warning-glow: rgba(251, 191, 36, 0.25);
+  --error: #f87171;
+  --error-bg: rgba(248, 113, 113, 0.12);
+  --error-glow: rgba(248, 113, 113, 0.25);
+
+  // 信息色
+  --info: #60a5fa;
+  --info-bg: rgba(96, 165, 250, 0.12);
+  --info-glow: rgba(96, 165, 250, 0.25);
+}
+
+// 浅色主题 - 柔和温暖的米白色调（优化视觉舒适度）
+[data-theme='light'] {
+  // 主背景 - 柔和的米白/暖灰色调，避免纯白刺眼
+  --theme-bg-primary: #f8f7f5;
+  --theme-bg-secondary: #faf9f7;
+  --theme-bg-tertiary: #f2f1ef;
+  --theme-bg-card: rgba(248, 247, 245, 0.9);
+  --theme-bg-glass: rgba(250, 249, 247, 0.75);
+  --theme-bg-layout: #f8f7f5;
+
+  // 文本层次 - 温暖深灰，保持对比度但更柔和
+  --theme-text-primary: #1a1c20;
+  --theme-text-secondary: #3d4048;
+  --theme-text-tertiary: #6b707a;
+  --theme-text-muted: #9aa0a8;
+
+  // 边框 - 温暖灰褐色调，更自然
+  --theme-border: rgba(159, 155, 148, 0.2);
+  --theme-border-strong: rgba(159, 155, 148, 0.35);
+  --theme-glass: rgba(250, 249, 247, 0.65);
+
+  // 强调色 - 珊瑚橙（稍微降低饱和度以匹配柔和基调）
+  --accent-primary: #e05238;
+  --accent-secondary: #f06850;
+  --accent-tertiary: #ffb898;
+  --accent-glow: rgba(224, 82, 56, 0.2);
+  --accent-glow-strong: rgba(224, 82, 56, 0.35);
+
+  // 辅助强调色
+  --accent-teal: #0891b2;
+  --accent-teal-glow: rgba(8, 145, 178, 0.2);
+  --accent-purple: #8b74b8;
+  --accent-purple-glow: rgba(139, 116, 184, 0.15);
+
+  // 浅色模式光晕 - 更微妙柔和
+  --glow-coral: radial-gradient(circle at 50% 0%, rgba(224, 82, 56, 0.04) 0%, transparent 60%);
+  --glow-coral-strong: radial-gradient(circle at 50% 0%, rgba(224, 82, 56, 0.08) 0%, transparent 45%);
+  --glow-teal: radial-gradient(circle at 80% 20%, rgba(8, 145, 178, 0.04) 0%, transparent 50%);
+  --glow-purple: radial-gradient(circle at 20% 80%, rgba(139, 116, 184, 0.03) 0%, transparent 50%);
+  --glow-amber: radial-gradient(circle at 30% 60%, rgba(245, 158, 11, 0.03) 0%, transparent 45%);
+
+  // 成功/警告/错误（适合浅色背景）
+  --success: #059669;
+  --success-bg: rgba(5, 150, 105, 0.08);
+  --success-glow: rgba(5, 150, 105, 0.2);
+  --warning: #d97706;
+  --warning-bg: rgba(217, 119, 6, 0.08);
+  --warning-glow: rgba(217, 119, 6, 0.2);
+  --error: #dc2626;
+  --error-bg: rgba(220, 38, 38, 0.08);
+  --error-glow: rgba(220, 38, 38, 0.2);
+
+  // 信息色
+  --info: #0284c7;
+  --info-bg: rgba(2, 132, 199, 0.08);
+  --info-glow: rgba(2, 132, 199, 0.2);
+}
+
+// =============================================================================
+// 色彩系统 - 莫兰迪低饱和度色系（增强对比度与层次）
+// =============================================================================
+
+// =============================================================================
+// 深色主题变量 - Neural Academia 精致学术风
+// =============================================================================
+// 主色 - 深空灰蓝 #0f1724
+$bg-primary: #0f1724;
+$bg-secondary: #1a2332;
+$bg-tertiary: #233044;
+$bg-card: rgba(35, 48, 68, 0.7);
+$bg-glass: rgba(15, 23, 36, 0.75);
+
+// 文本色 - 精致学术风
+$text-primary: #e2e8f0;
+$text-secondary: #94a3b8;
+$text-tertiary: #64748b;
+$text-muted: #475569;
+
+// 边框 - 微妙高光
+$border-light: rgba(148, 163, 184, 0.12);
+$border-md: rgba(148, 163, 184, 0.2);
+$border-strong: rgba(148, 163, 184, 0.28);
+
+// 强调色 - 珊瑚橙 #ff6b4a
+$accent-primary: #ff6b4a;
+$accent-secondary: #ff8a6b;
+$accent-tertiary: #ffb8a8;
+$accent-light: rgba(255, 107, 74, 0.1);
+$accent-glow: rgba(255, 107, 74, 0.35);
+$accent-glow-strong: rgba(255, 107, 74, 0.5);
+
+// 辅助强调色 - 柔和青蓝色 #3cc3c7
+$accent-teal: #3cc3c7;
+$accent-teal-glow: rgba(60, 195, 199, 0.3);
+$accent-purple: #a894c4;
+$accent-purple-glow: rgba(168, 148, 196, 0.2);
+
+// 背景光晕 - 克制科技感
+$glow-coral: radial-gradient(circle at 50% 0%, rgba(255, 107, 74, 0.08) 0%, transparent 65%);
+$glow-coral-strong: radial-gradient(circle at 50% 0%, rgba(255, 107, 74, 0.12) 0%, transparent 50%);
+$glow-teal: radial-gradient(circle at 80% 20%, rgba(60, 195, 199, 0.06) 0%, transparent 55%);
+$glow-purple: radial-gradient(circle at 20% 80%, rgba(168, 148, 196, 0.05) 0%, transparent 55%);
+$glow-amber: radial-gradient(circle at 30% 60%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+
+// 功能色 - 学术风格
+$success: #4ade80;
+$success-glow: rgba(74, 222, 128, 0.25);
+$success-bg: rgba(74, 222, 128, 0.2);
+$warning: #fbbf24;
+$warning-glow: rgba(251, 191, 36, 0.25);
+$warning-bg: rgba(251, 191, 36, 0.2);
+$error: #f87171;
+$error-glow: rgba(248, 113, 113, 0.25);
+$error-bg: rgba(248, 113, 113, 0.2);
+
+// =============================================================================
+// 浅色主题变量 - 柔和温暖的米白色调
+// =============================================================================
+$bg-primary-light: #f8f7f5;
+$bg-secondary-light: #faf9f7;
+$bg-tertiary-light: #f2f1ef;
+$bg-card-light: rgba(248, 247, 245, 0.9);
+$bg-glass-light: rgba(250, 249, 247, 0.75);
+
+// 文本色（温暖深灰）
+$text-primary-light: #1a1c20;
+$text-secondary-light: #3d4048;
+$text-tertiary-light: #6b707a;
+$text-muted-light: #9aa0a8;
+
+// 边框（温暖灰褐色）
+$border-light-light: rgba(159, 155, 148, 0.2);
+$border-md-light: rgba(159, 155, 148, 0.35);
+$border-strong-light: rgba(159, 155, 148, 0.45);
+
+// 强调色 - 珊瑚橙（降低饱和度匹配柔和基调）
+$accent-primary-light: #e05238;
+$accent-secondary-light: #f06850;
+$accent-tertiary-light: #ffb898;
+$accent-light-mode: rgba(224, 82, 56, 0.08);
+$accent-glow-light: rgba(224, 82, 56, 0.2);
+$accent-glow-strong-light: rgba(224, 82, 56, 0.35);
+
+// 辅助强调色
+$accent-teal-light: #0891b2;
+$accent-teal-glow-light: rgba(8, 145, 178, 0.2);
+$accent-purple-light: #8b74b8;
+$accent-purple-glow-light: rgba(139, 116, 184, 0.15);
+
+// 背景光晕（更微妙柔和）
+$glow-coral-light: radial-gradient(circle at 50% 0%, rgba(224, 82, 56, 0.04) 0%, transparent 60%);
+$glow-teal-light: radial-gradient(circle at 80% 20%, rgba(8, 145, 178, 0.04) 0%, transparent 50%);
+$glow-purple-light: radial-gradient(circle at 20% 80%, rgba(139, 116, 184, 0.03) 0%, transparent 50%);
+$glow-amber-light: radial-gradient(circle at 30% 60%, rgba(245, 158, 11, 0.03) 0%, transparent 45%);
+
+// 功能色（适合浅色背景）
+$success-light: #059669;
+$success-glow-light: rgba(5, 150, 105, 0.2);
+$success-bg-light: rgba(5, 150, 105, 0.08);
+$warning-light: #d97706;
+$warning-glow-light: rgba(217, 119, 6, 0.2);
+$warning-bg-light: rgba(217, 119, 6, 0.08);
+$error-light: #dc2626;
+$error-glow-light: rgba(220, 38, 38, 0.2);
+$error-bg-light: rgba(220, 38, 38, 0.08);
+
+// =============================================================================
+// 情绪色 - 6 种基本情绪（低饱和度渐变）
+// =============================================================================
+// 愤怒 - 低饱和红色
+$emotion-angry: #ef4444;
+$emotion-angry-dark: #dc2626;
+$emotion-angry-bg: rgba(239, 68, 68, 0.12);
+$emotion-angry-glow: rgba(239, 68, 68, 0.25);
+
+// 恐惧 - 低饱和紫色
+$emotion-fear: #c084fc;
+$emotion-fear-dark: #a855f7;
+$emotion-fear-bg: rgba(192, 132, 252, 0.12);
+$emotion-fear-glow: rgba(192, 132, 252, 0.25);
+
+// 快乐/积极 - 低饱和绿色
+$emotion-happy: #4ade80;
+$emotion-happy-dark: #22c55e;
+$emotion-happy-bg: rgba(74, 222, 128, 0.12);
+$emotion-happy-glow: rgba(74, 222, 128, 0.25);
+
+// 中性 - 灰蓝色
+$emotion-neutral: #94a3b8;
+$emotion-neutral-dark: #64748b;
+$emotion-neutral-bg: rgba(148, 163, 184, 0.12);
+$emotion-neutral-glow: rgba(148, 163, 184, 0.2);
+
+// 悲伤 - 低饱和蓝色
+$emotion-sad: #60a5fa;
+$emotion-sad-dark: #3b82f6;
+$emotion-sad-bg: rgba(96, 165, 250, 0.12);
+$emotion-sad-glow: rgba(96, 165, 250, 0.25);
+
+// 惊讶 - 低饱和黄色
+$emotion-surprise: #fbbf24;
+$emotion-surprise-dark: #f59e0b;
+$emotion-surprise-bg: rgba(251, 191, 36, 0.12);
+$emotion-surprise-glow: rgba(251, 191, 36, 0.25);
+
+// 情绪渐变（用于光谱可视化 - 学术风格）
+$emotion-gradients: (
+  angry: linear-gradient(135deg, #ef4444 0%, #dc2626 100%),
+  fear: linear-gradient(135deg, #c084fc 0%, #a855f7 100%),
+  happy: linear-gradient(135deg, #4ade80 0%, #22c55e 100%),
+  neutral: linear-gradient(135deg, #94a3b8 0%, #64748b 100%),
+  sad: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%),
+  surprise: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%),
+);
+
+// =============================================================================
+// 字体系统
+// =============================================================================
+
+// 中文字体
+$font-cn-body: 'Source Han Sans SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+$font-cn-title: 'Source Han Serif SC', 'Noto Serif SC', 'Songti SC', serif;
+
+// 英文字体
+$font-en-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-en-title: 'IBM Plex Serif', 'Georgia', serif;
+
+// 数字/代码字体
+$font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+// =============================================================================
+// 间距系统 - 基于 8px 网格
+// =============================================================================
+$space-0: 0;
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+$space-16: 64px;
+$space-20: 80px;
+$space-24: 96px;
+
+// =============================================================================
+// 字阶系统 - 基于 1.2 比例
+// =============================================================================
+$text-xs: 0.75rem;    // 12px
+$text-sm: 0.875rem;   // 14px
+$text-base: 1rem;     // 16px
+$text-lg: 1.2rem;     // 19.2px
+$text-xl: 1.44rem;    // 23px
+$text-2xl: 1.728rem;  // 27.6px
+$text-3xl: 2.074rem;  // 33px
+$text-4xl: 2.488rem;  // 40px
+$text-5xl: 2.986rem;  // 48px
+
+// =============================================================================
+// 阴影系统 - 深度层次（学术精致风格）
+// =============================================================================
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+$shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.55);
+$shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.6);
+
+// 光晕效果（强调元素 - 学术克制风格）
+$glow-accent: 0 0 20px rgba(255, 107, 74, 0.3);
+$glow-accent-strong: 0 0 32px rgba(255, 107, 74, 0.45);
+$glow-soft: 0 0 40px rgba(255, 255, 255, 0.06);
+$glow-success: 0 0 20px rgba(74, 222, 128, 0.25);
+$glow-error: 0 0 20px rgba(248, 113, 113, 0.25);
+$glow-teal: 0 0 20px rgba(60, 195, 199, 0.25);
+$glow-purple: 0 0 20px rgba(168, 148, 196, 0.2);
+
+// 神经网络激活光晕（克制科技感）
+$neural-glow: 0 0 16px rgba(255, 107, 74, 0.2), 0 0 32px rgba(255, 107, 74, 0.1), 0 0 48px rgba(255, 107, 74, 0.05);
+
+// =============================================================================
+// 圆角系统 - 学术严谨 6-8px
+// =============================================================================
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 10px;
+$radius-2xl: 12px;
+$radius-3xl: 16px;
+$radius-full: 9999px;
+
+// =============================================================================
+// 动效系统 - 神经网络激活风格（增强流畅度）
+// =============================================================================
+
+// 缓动曲线 - 专业级曲线（refined not flashy）
+$ease-neural: cubic-bezier(0.25, 1, 0.5, 1);        // ease-out-quart - 平滑激活
+$ease-activate: cubic-bezier(0.16, 1, 0.3, 1);      // ease-out-expo - 自信果断
+$ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);        // ease-out-quart - 精致过渡
+$ease-bounce: cubic-bezier(0.34, 1.2, 0.64, 1);     // 轻微弹跳（适度使用）
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);       // 优雅进出
+$ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);     // 推荐 - 平滑精致
+$ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);    // 推荐 - 更干脆
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);      // 推荐 - 自信果断
+
+// 持续时间
+$duration-instant: 100ms;
+$duration-fast: 200ms;
+$duration-normal: 350ms;
+$duration-slow: 550ms;
+$duration-slower: 900ms;
+$duration-slowest: 1400ms;
+
+// 入场动画时长（用于页面加载）
+$duration-enter: 500ms;
+$duration-enter-fast: 350ms;
+
+// =============================================================================
+// 渐变系统（Neural Academia 精致学术风）
+// =============================================================================
+$gradient-bg: linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
+$gradient-bg-mesh: linear-gradient(180deg, $bg-primary 0%, rgba(26, 35, 50, 0.85) 50%, $bg-secondary 100%);
+$gradient-card: linear-gradient(135deg, rgba(35, 48, 68, 0.7) 0%, rgba(35, 48, 68, 0.35) 100%);
+$gradient-accent: linear-gradient(135deg, $accent-primary 0%, $accent-secondary 50%, $accent-tertiary 100%);
+$gradient-accent-horizontal: linear-gradient(90deg, $accent-primary 0%, $accent-secondary 100%);
+$gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+$gradient-shine: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.08) 45%, transparent 55%, transparent 100%);
+
+// 装饰性渐变（用于背景氛围 - 克制科技感）
+$gradient-aurora: linear-gradient(135deg, rgba(255,107,74,0.03) 0%, rgba(60,195,199,0.03) 50%, rgba(168,148,196,0.03) 100%);
+$gradient-radial-coral: radial-gradient(circle at 50% 0%, rgba(255,107,74,0.08) 0%, transparent 70%);
+$gradient-radial-teal: radial-gradient(circle at 80% 20%, rgba(60,195,199,0.06) 0%, transparent 60%);
+$gradient-radial-purple: radial-gradient(circle at 20% 80%, rgba(168,148,196,0.05) 0%, transparent 60%);
+$gradient-radial-amber: radial-gradient(circle at 30% 60%, rgba(245,158,11,0.04) 0%, transparent 55%);
+
+// 多层光晕叠加
+$gradient-glow-stack:
+  radial-gradient(circle at 50% 0%, rgba(255, 107, 74, 0.08) 0%, transparent 65%),
+  radial-gradient(circle at 80% 20%, rgba(60, 195, 199, 0.06) 0%, transparent 55%),
+  radial-gradient(circle at 20% 80%, rgba(168, 148, 196, 0.05) 0%, transparent 55%);
+
+// 情绪渐变（用于数据可视化 - 学术风格）
+$emotion-gradient-angry: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+$emotion-gradient-fear: linear-gradient(90deg, #c084fc 0%, #a855f7 100%);
+$emotion-gradient-happy: linear-gradient(90deg, #4ade80 0%, #22c55e 100%);
+$emotion-gradient-neutral: linear-gradient(90deg, #94a3b8 0%, #64748b 100%);
+$emotion-gradient-sad: linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%);
+$emotion-gradient-surprise: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+
+// =============================================================================
+// 玻璃拟态（Neural Academia 精致风格）
+// =============================================================================
+$glass-bg: rgba(15, 23, 36, 0.6);
+$glass-bg-light: rgba(15, 23, 36, 0.4);
+$glass-bg-strong: rgba(15, 23, 36, 0.75);
+$glass-border: rgba(148, 163, 184, 0.12);
+$glass-border-strong: rgba(148, 163, 184, 0.2);
+$glass-blur: blur(16px);
+$glass-saturate: saturate(1.2);
+
+// 浅色模式玻璃
+$glass-bg-light-mode: rgba(255, 255, 255, 0.75);
+$glass-border-light-mode: rgba(159, 155, 148, 0.2);
+
+// 纹理叠加（用于背景深度）
+$noise-overlay: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+
+// =============================================================================
+// Z-index 层级
+// =============================================================================
+$z-base: 0;
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-overlay: 300;
+$z-modal: 400;
+$z-toast: 500;
+$z-tooltip: 600;
+
+// =============================================================================
+// 响应式断点
+// =============================================================================
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// =============================================================================
+// 全局 Mixins（增强版本）
+// =============================================================================
+
+// 玻璃拟态（增强）
+@mixin glass {
+  background: $glass-bg;
+  backdrop-filter: $glass-blur $glass-saturate;
+  border: 1px solid $glass-border;
+}
+
+@mixin glass-light {
+  background: $glass-bg-light;
+  backdrop-filter: $glass-blur $glass-saturate;
+  border: 1px solid $glass-border;
+}
+
+@mixin glass-strong {
+  background: $glass-bg-strong;
+  backdrop-filter: $glass-blur $glass-saturate;
+  border: 1px solid $glass-border-strong;
+}
+
+// 渐变文字
+@mixin gradient-text {
+  background: $gradient-accent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// 光晕效果
+@mixin glow($color: $accent-glow, $spread: 24px) {
+  box-shadow: 0 0 $spread $color;
+}
+
+@mixin glow-strong($color: $accent-glow-strong, $spread: 32px) {
+  box-shadow: 0 0 $spread $color, 0 0 calc($spread * 1.5) rgba(255, 107, 74, 0.2);
+}
+
+// 神经网络节点样式（增强）
+@mixin neural-node {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: $gradient-accent;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity $duration-normal $ease-neural;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: $gradient-shine;
+    transform: translateX(-100%);
+    transition: transform $duration-slow $ease-smooth;
+    opacity: 0;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &:hover::after {
+    transform: translateX(100%);
+    opacity: 0.1;
+  }
+}
+
+// 边框光晕动画
+@mixin border-glow {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: $gradient-accent;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $duration-normal $ease-neural;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+// 响应式
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// 减少动画
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// 纹理叠加
+@mixin noise-texture($opacity: 0.03) {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: $noise-overlay;
+    opacity: $opacity;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// =============================================================================
+// Ant Design 5 主题覆盖（深色主题适配 - 增强对比）
+// =============================================================================
+
+// 深色主题 Ant Design 变量
+:root,
+[data-theme='dark'] {
+  --ant-color-bg-layout: #{$bg-primary};
+  --ant-color-bg-container: #{$bg-secondary};
+  --ant-color-bg-elevated: #{$bg-tertiary};
+  --ant-color-text: #{$text-primary};
+  --ant-color-text-secondary: #{$text-secondary};
+  --ant-color-text-tertiary: #{$text-tertiary};
+  --ant-color-border: #{$border-light};
+  --ant-color-primary: #{$accent-primary};
+  --ant-border-radius: #{$radius-md};
+  --ant-font-family: #{$font-cn-body}, #{$font-en-body};
+
+  // 增强阴影（更深层次）
+  --ant-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ant-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.55);
+  --ant-shadow-3: 0 8px 24px rgba(0, 0, 0, 0.65);
+}
+
+// 浅色主题 Ant Design 变量 - 柔和米白色调
+[data-theme='light'] {
+  --ant-color-bg-layout: #f8f7f5;
+  --ant-color-bg-container: #faf9f7;
+  --ant-color-bg-elevated: #f2f1ef;
+  --ant-color-text: #{$text-primary-light};
+  --ant-color-text-secondary: #{$text-secondary-light};
+  --ant-color-text-tertiary: #{$text-tertiary-light};
+  --ant-color-border: #{$border-light-light};
+  --ant-color-primary: #{$accent-primary-light};
+  --ant-border-radius: #{$radius-md};
+  --ant-font-family: #{$font-cn-body}, #{$font-en-body};
+
+  // 浅色模式阴影（更柔和）
+  --ant-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --ant-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --ant-shadow-3: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+// =============================================================================
+// 全局样式重置与基础（增强）
+// =============================================================================
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-cn-body, $font-en-body;
+  background: $bg-primary;
+  // 多层背景光晕
+  background-image:
+    $glow-coral,
+    $glow-teal,
+    $glow-purple,
+    $glow-amber,
+    linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
+  background-attachment: fixed;
+  color: $text-primary;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // 微妙的纹理叠加
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: $noise-overlay;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 9999;
+  }
+}
+
+// 滚动条美化（增强）
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, $text-tertiary, $text-secondary);
+  border-radius: $radius-full;
+  border: 2px solid $bg-secondary;
+
+  &:hover {
+    background: linear-gradient(180deg, $text-secondary, $text-primary);
+  }
+}
+
+// 选中文本（增强 - 珊瑚橙高亮）
+::selection {
+  background: rgba(255, 95, 58, 0.35);
+  color: $text-primary;
+}
+
+// 聚焦可见性（增强）
+:focus-visible {
+  outline: 2px solid $accent-primary;
+  outline-offset: 2px;
+  box-shadow: 0 0 24px rgba(255, 95, 58, 0.5);
+}
+
+// =============================================================================
+// 工具类（增强版本）
+// =============================================================================
+
+// 主题感知 Mixin - 为浅色和深色主题提供不同的值
+@mixin theme-aware($property, $dark-value, $light-value) {
+  #{$property}: $dark-value;
+  [data-theme='light'] & {
+    #{$property}: $light-value;
+  }
+}
+
+// 玻璃背景 Mixin - 主题感知
+@mixin glass-bg($opacity: 0.6) {
+  background: rgba(20, 28, 45, $opacity);
+  [data-theme='light'] & {
+    background: rgba(255, 255, 255, $opacity);
+  }
+}
+
+// 卡片背景 Mixin - 主题感知
+@mixin card-bg($dark-gradient, $light-gradient) {
+  background: $dark-gradient;
+  [data-theme='light'] & {
+    background: $light-gradient;
+  }
+}
+
+// 文本颜色 Mixin - 主题感知
+@mixin text-color($dark-color, $light-color) {
+  color: $dark-color;
+  [data-theme='light'] & {
+    color: $light-color;
+  }
+}
+
+// 边框颜色 Mixin - 主题感知
+@mixin border-color-theme($dark-color, $light-color) {
+  border-color: $dark-color;
+  [data-theme='light'] & {
+    border-color: $light-color;
+  }
+}
+
+.text-gradient {
+  @include gradient-text;
+}
+
+.glass-card {
+  @include glass;
+}
+
+.glass-card-light {
+  @include glass-light;
+}
+
+.glass-card-strong {
+  @include glass-strong;
+}
+
+.neural-node {
+  @include neural-node;
+}
+
+.border-glow {
+  @include border-glow;
+}
+
+// 光晕工具类
+.glow-accent {
+  @include glow;
+}
+
+.glow-accent-strong {
+  @include glow-strong;
+}
+
+// 背景工具类
+.bg-gradient-mesh {
+  background: $gradient-bg-mesh;
+}
+
+.bg-aurora {
+  background: $gradient-aurora;
+}
+
+// 动画工具类
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+// 浮动动画
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: float 3s $ease-smooth infinite;
+}
+
+// 脉冲光晕
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 24px rgba(255, 95, 58, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 48px rgba(255, 95, 58, 0.6), 0 0 80px rgba(255, 95, 58, 0.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s $ease-smooth infinite;
+}
+
+// =============================================================================
+// 入场动画 - 页面加载编排（staggered reveals）
+// =============================================================================
+
+// 淡入上移 - 基础款
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 淡入上移 - 长距离版本
+@keyframes fade-up-lg {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 淡入右移
+@keyframes fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// 淡入左移
+@keyframes fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// 缩放淡入
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// 缩放淡入 - 带弹跳
+@keyframes scale-in-bounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// 下落淡入
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 下落淡入 - 长距离版本
+@keyframes fade-down-lg {
+  from {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =============================================================================
+// 交互动画
+// =============================================================================
+
+// 按钮点击反馈
+@keyframes button-press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// 成功勾选
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+// 错误摇晃
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-8px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(8px);
+  }
+}
+
+// 加载脉冲
+@keyframes loading-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+}
+
+// 骨架屏闪烁
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// 进度条填充
+@keyframes progress-fill {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// 图表柱状图生长
+@keyframes bar-grow {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// 图表环形图绘制
+@keyframes ring-draw {
+  from {
+    stroke-dashoffset: 283; // 2 * PI * 45 (for r=45)
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// =============================================================================
+// 动画工具类 - 入场编排
+// =============================================================================
+
+// 基础入场
+.animate-in {
+  animation: fade-up $duration-enter $ease-out-expo both;
+}
+
+.animate-in-lg {
+  animation: fade-up-lg $duration-enter $ease-out-expo both;
+}
+
+.animate-fade-right {
+  animation: fade-right $duration-enter $ease-out-expo both;
+}
+
+.animate-fade-left {
+  animation: fade-left $duration-enter $ease-out-expo both;
+}
+
+.animate-scale {
+  animation: scale-in $duration-enter $ease-out-expo both;
+}
+
+.animate-scale-bounce {
+  animation: scale-in-bounce $duration-enter $ease-out-quint both;
+}
+
+.animate-fade-down {
+  animation: fade-down $duration-enter $ease-out-expo both;
+}
+
+.animate-fade-down-lg {
+  animation: fade-down-lg $duration-enter $ease-out-expo both;
+}
+
+// 阶梯延迟（staggered delays）- 用于列表/网格
+.delay-1 { animation-delay: 100ms; }
+.delay-2 { animation-delay: 200ms; }
+.delay-3 { animation-delay: 300ms; }
+.delay-4 { animation-delay: 400ms; }
+.delay-5 { animation-delay: 500ms; }
+.delay-6 { animation-delay: 600ms; }
+.delay-7 { animation-delay: 700ms; }
+.delay-8 { animation-delay: 800ms; }
+.delay-9 { animation-delay: 900ms; }
+
+// 快速阶梯延迟
+.delay-fast-1 { animation-delay: 50ms; }
+.delay-fast-2 { animation-delay: 100ms; }
+.delay-fast-3 { animation-delay: 150ms; }
+.delay-fast-4 { animation-delay: 200ms; }
+.delay-fast-5 { animation-delay: 250ms; }
+
+// =============================================================================
+// 交互动画工具类
+// =============================================================================
+
+// 按钮点击动画
+.btn-press {
+  animation: button-press $duration-fast $ease-out-quart;
+}
+
+// 错误摇晃
+.animate-shake {
+  animation: shake $duration-normal $ease-out-quart;
+}
+
+// 加载脉冲
+.animate-loading {
+  animation: loading-pulse $duration-normal $ease-smooth infinite;
+}
+
+// 骨架屏
+.animate-skeleton {
+  background: linear-gradient(
+    90deg,
+    $bg-tertiary 0%,
+    rgba($bg-tertiary, 0.7) 50%,
+    $bg-tertiary 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s $ease-out-quart infinite;
+}
+
+// 进度条动画
+.animate-progress {
+  animation: progress-fill $duration-slow $ease-out-expo both;
+}
+
+// 图表柱状图动画
+.animate-bar {
+  animation: bar-grow $duration-slow $ease-out-expo both;
+}
+
+// 图表环形图动画
+.animate-ring {
+  stroke-dasharray: 283;
+  animation: ring-draw $duration-slow $ease-out-expo both;
+}
+
+// =============================================================================
+// 悬停动画工具类
+// =============================================================================
+
+// 悬停上移
+.hover-lift {
+  transition: transform $duration-fast $ease-out-quart, box-shadow $duration-fast $ease-out-quart;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// 悬停放大
+.hover-scale {
+  transition: transform $duration-fast $ease-out-quart;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// 悬停发光
+.hover-glow {
+  transition: box-shadow $duration-normal $ease-out-quart;
+
+  &:hover {
+    box-shadow: $glow-accent;
+  }
+}
+
+// =============================================================================
+// 减少动画支持 - 尊重用户偏好
+// =============================================================================
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  // 保留必要的加载动画
+  .animate-loading,
+  .animate-skeleton {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+// 减少动画工具类（手动应用）
+.reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

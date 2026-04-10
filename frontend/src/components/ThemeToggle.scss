@@ -1,0 +1,157 @@
+@import '../assets/styles/design-system';
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .theme-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: all $duration-fast $ease-smooth;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .icon {
+    font-size: 15px;
+    transition: all $duration-fast $ease-smooth;
+
+    &.sun-icon {
+      color: #f59e0b;
+      filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4));
+    }
+
+    &.moon-icon {
+      color: var(--theme-text-tertiary);
+    }
+  }
+
+  .switch-icon {
+    font-size: 13px;
+  }
+
+  .theme-switch {
+    &.ant-switch {
+      width: 52px;
+      height: 26px;
+      background: rgba(36, 48, 67, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      transition: all $duration-fast $ease-smooth;
+
+      &:hover {
+        border-color: rgba(255, 107, 74, 0.35);
+      }
+
+      .ant-switch-handle {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 50%;
+        transition: all $duration-fast $ease-smooth;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &.ant-switch-checked {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 74, 0.85) 0%,
+          rgba(255, 143, 115, 0.9) 100%
+        );
+        border-color: rgba(255, 107, 74, 0.4);
+        box-shadow:
+          0 2px 12px rgba(255, 107, 74, 0.35),
+          inset 0 0 12px rgba(255, 255, 255, 0.1);
+
+        .ant-switch-handle {
+          margin-left: 26px;
+          background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+          box-shadow:
+            0 2px 6px rgba(0, 0, 0, 0.3),
+            inset 0 1px 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .switch-icon {
+          color: #fff;
+          opacity: 1;
+        }
+      }
+
+      &:not(.ant-switch-checked) .switch-icon {
+        color: #f59e0b;
+      }
+    }
+  }
+}
+
+// 浅色模式调整
+[data-theme='light'] {
+  .theme-toggle {
+    .theme-label {
+      &:hover {
+        .icon {
+          filter: brightness(1.1);
+        }
+      }
+    }
+
+    .icon {
+      &.sun-icon {
+        color: #f59e0b;
+        filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+      }
+
+      &.moon-icon {
+        color: #64748b;
+      }
+    }
+
+    .theme-switch {
+      &.ant-switch {
+        background: rgba(148, 163, 184, 0.25);
+        border-color: rgba(148, 163, 184, 0.3);
+
+        &:hover {
+          border-color: rgba(255, 107, 74, 0.4);
+        }
+
+        .ant-switch-handle {
+          background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+
+        &.ant-switch-checked {
+          background: linear-gradient(
+            135deg,
+            #ff6b4a 0%,
+            #ff8f73 100%
+          );
+          border-color: rgba(255, 107, 74, 0.5);
+          box-shadow:
+            0 2px 12px rgba(255, 107, 74, 0.4),
+            inset 0 0 10px rgba(255, 255, 255, 0.15);
+
+          .ant-switch-handle {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

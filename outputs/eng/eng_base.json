@@ -1,0 +1,6 @@
+{
+  "latency_ms": 320.0,
+  "throughput_sps": 12.5,
+  "vram_gb": 18.5,
+  "model_size_gb": 16.0
+}
