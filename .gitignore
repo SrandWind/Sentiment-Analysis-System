@@ -22,12 +22,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Frontend
-frontend/public/output/*.json
-frontend/public/output/*.csv
-frontend/public/output/*.md
-frontend/public/output/charts/
-
 # IDE
 .idea/
 .vscode/

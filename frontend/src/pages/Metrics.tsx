@@ -300,12 +300,10 @@ const Metrics: React.FC = () => {
                 support: metrics.support,
               }))
             : defaultEmotionMetrics,
-          prCurve: json.primary_cls_pr_curves
-            ? aggregatePRCurve(json.primary_cls_pr_curves)
-            : defaultPrCurveData,
-          rocCurve: json.primary_cls_roc_curves
-            ? aggregateROCCurve(json.primary_cls_roc_curves)
-            : defaultRocCurveData,
+          prCurve: json.aggregated_pr_curve || 
+            (json.primary_cls_pr_curves ? aggregatePRCurve(json.primary_cls_pr_curves) : defaultPrCurveData),
+          rocCurve: json.aggregated_roc_curve || 
+            (json.primary_cls_roc_curves ? aggregateROCCurve(json.primary_cls_roc_curves) : defaultRocCurveData),
           training: defaultTrainingHistory,
           confusionMatrix: json.primary_cls_confusion_matrix || undefined,
         }

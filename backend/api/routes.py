@@ -35,9 +35,10 @@ batch_progress_store: dict = {}
 
 # Possible paths for metrics JSON files (from eval_v2.py output)
 METRICS_FILE_PATHS = [
-    "./outputs",
-    "../outputs",
-    "./backend/outputs",
+    "./outputs",           # Running from project root: ./outputs
+    "../outputs",          # Running from backend/: ../outputs
+    "../../outputs",       # Running from backend/api/: ../../outputs
+    "./backend/outputs",   # Alternative path
 ]
 
 
@@ -711,9 +712,10 @@ async def compare_models(request: CompareRequest = None):
 
 # Possible paths for SwanLab CSV files
 SWANLAB_CSV_PATHS = [
-    "./outputs/swanlab",
-    "../outputs/swanlab",
-    "./backend/outputs/swanlab",
+    "./outputs/swanlab",       # Running from project root
+    "../outputs/swanlab",      # Running from backend/
+    "../../outputs/swanlab",   # Running from backend/api/
+    "./backend/outputs/swanlab", # Alternative path
 ]
 
 

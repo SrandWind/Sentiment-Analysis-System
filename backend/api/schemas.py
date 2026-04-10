@@ -78,6 +78,16 @@ class HistoryResponse(BaseModel):
     items: List[HistoryItem]
 
 
+class PRCurvePoint(BaseModel):
+    recall: float
+    precision: float
+    threshold: float
+
+class ROCCurvePoint(BaseModel):
+    fpr: float
+    tpr: float
+    threshold: float
+
 class MetricsResponse(BaseModel):
     model_variant: str
     emotion_macro_mae: float
@@ -87,6 +97,8 @@ class MetricsResponse(BaseModel):
     primary_cls_macro_auc: Optional[float] = None
     primary_cls_macro_ap: Optional[float] = None
     mbti_accuracy: float
+    aggregated_pr_curve: Optional[List[Dict[str, float]]] = None
+    aggregated_roc_curve: Optional[List[Dict[str, float]]] = None
     mbti_macro_f1: float
     json_parse_rate: float
     cot7_complete_rate: float
@@ -95,6 +107,8 @@ class MetricsResponse(BaseModel):
     primary_cls_per_class_f1: Optional[Dict[str, float]] = None
     primary_cls_per_class_metrics: Optional[Dict[str, Any]] = None
     primary_cls_confusion_matrix: Optional[Dict[str, Any]] = None
+    primary_cls_pr_curves: Optional[Dict[str, List[PRCurvePoint]]] = None
+    primary_cls_roc_curves: Optional[Dict[str, List[ROCCurvePoint]]] = None
     latency_ms: Optional[float] = None
     throughput_sps: Optional[float] = None
     vram_gb: Optional[float] = None
