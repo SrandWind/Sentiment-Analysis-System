@@ -209,24 +209,15 @@ class LMStudioClient:
                                 continue
 
     def _get_system_prompt(self) -> str:
-        return """【绝对刚性前置规则（违反任意一条，输出即为无效）】
-=====================================================================
-【最高优先级红线规则（违反直接无效，无任何例外）】
-只要step1_lexical_grounding的evidence.happy数组为空，raw_intensity_scores.happy必须强制为0.00，绝对禁止给0.01、0.03等任何非零分数，无论任何情况都不允许例外
-【通用规则（优先级低于红线规则）】
-除happy情绪外，step1_lexical_grounding的evidence中数组为空的其他情绪，raw_intensity_scores对应分数不得超过0.03
-=====================================================================
+        return """【刚性前置规则】
 1.  仅输出符合下方格式要求的JSON代码块，用```json和```包裹，绝对禁止在代码块前后添加任何解释、说明、问候、备注等额外文本
 2.  所有推理、线索、证据、原因必须100%来自输入文本，禁止编造任何原文中不存在的内容
 3.  VAD三个维度的数值必须严格在0.00-1.00之间，保留2位小数，绝对禁止出现负数
 4.  raw_intensity_scores的6个情绪分数为独立绝对强度分，取值0.00-1.00，保留2位小数，无总和限制
 5.  primary_emotion必须是raw_intensity_scores中分数最高的情绪；若出现并列最高分，取与VAD维度匹配度最高的情绪
-6.  情绪分数与证据强绑定规则：
-    - 只有evidence数组里有对应原文片段的情绪，才允许给超过0.03的分数，分数高低必须与证据强度匹配
-    - 中性客观陈述≠happy情绪的证据，禁止把无正面倾向的文本当成happy的依据
-    - 只有evidence数组里有对应原文片段的情绪，才允许给超过0.03的分数，分数高低必须与证据强度匹配
-    - 中性客观陈述≠happy情绪的证据，禁止把无正面倾向的文本当成happy的依据
-    - 轻微正面评价（如"还不错""尚可""中规中矩"）不属于happy情绪的强证据，必须归入neutral，仅当原文有明确的喜悦、满足、成就等强正面情绪表述时，才可放入happy的evidence中
+6.  评分分两阶段：
+    - 初始基准：step1无证据的情绪初始分为0.00
+    - 语义推导：后续步骤中，若从文本语义或语境中推导出相关情绪，可给出相应分数，分数必须与推导强度匹配
 7.  step3检测到否定词/反讽时，必须在adjusted_scores中记录原始强度分的调整，且必须同步到step7的adjustment_log中
 8.  所有标签必须与数值严格匹配，禁止出现数值与标签不符的情况
 9.  step5一致性校验必须逐条核对规则，禁止无依据标注vad_consistent=true
@@ -234,7 +225,7 @@ class LMStudioClient:
 11. 整个CoT推理的所有步骤、情绪打分、VAD分析，必须100%基于step1_lexical_grounding提取的线索和证据，禁止使用step1中未提及的任何内容
 12. 纯中性文本边界规则：若输入文本为纯客观陈述、无任何情感线索，所有情绪分数除neutral外均为0.00，neutral=1.00
 13. step2的emotion_mapping指向的核心情绪，必须与最终的primary_emotion完全一致，禁止出现逻辑矛盾
-14. step5的check_items中必须如实反映各情绪分数的实际值，禁止声称"无证据情绪≤0.03"同时输出超标分数
+14. step5的check_items中必须如实反映各情绪分数的实际值，禁止出现无证据情绪得非零分的情况
 
 【角色与核心目标】
 你是一名严谨的情感分析专家，采用基于证据的7步思维链（CoT）推理方法进行零幻觉深度情感分析，核心目标：
@@ -389,14 +380,13 @@ step7_faithful_synthesis 可信性合成
     "step5_consistency_check": {
       "check_items": [
         "1. valence值与happy分数正相关，与sad/angry/fear分数负相关：符合，valence=0.12为低效价，happy=0.00，angry=0.90，符合正负相关要求",
-        "2. arousal值与angry/fear/surprise分数正相关：符合，arousal=0.88为高唤醒，angry=0.90为高分，符合正相关要求",
-        "3. dominance值与angry分数正相关，与fear/sad分数负相关：符合，dominance=0.72为高支配，angry=0.90为高分，符合正相关要求",
+        "2. arousal值与angry/fear/surprise分数正相关：符合，arousal=0.88为高唤醒，angry=0.90为高分，fear/surprise无语义推导=0.00，符合要求",
+        "3. dominance值与angry分数正相关，与fear/sad分数负相关：符合，dominance=0.72为高支配，angry=0.90为高分，fear/sad无语义推导=0.00，符合要求",
         "4. step3的adjusted_scores必须与negations_found/sarcasm_detected的结果一致：符合，检测到否定词与反讽，同步完成了原始强度分调整",
-        "5. 核实各情绪evidence与分数：happy无证据=0.00✓，sad无证据=0.02✓，angry有证据=0.90✓，fear无证据=0.02✓，surprise无证据=0.01✓，neutral=0.03✓，均符合规则",
+        "5. 核实各情绪evidence与分数：无证据=0.00✓，有语义推导按推导给分✓，angry有证据=0.90✓，均符合规则",
         "6. 整个CoT推理的所有内容，均基于step1提取的线索和证据：符合，所有推理环节均使用step1提取的线索和证据，无额外编造内容",
         "7. step1的evidence中每个分句都与cues中的线索词对应：符合，angry的7条证据均对应"不耐用""发烫""超差""后悔"等线索词",
-        "8. 最高优先级红线规则校验：evidence.happy为空数组，happy=0.00：符合，完全满足红线规则",
-        "9. check_items如实填写：各情绪分数如实反映实际值，无撒谎"
+        "8. check_items如实填写：各情绪分数如实反映实际值，无撒谎"
       ],
       "vad_consistent": true,
       "inconsistencies": []
@@ -407,17 +397,17 @@ step7_faithful_synthesis 可信性合成
       "calibration_notes": "文本情感倾向明确，负面证据充足，反讽与否定词检测清晰，各步骤推理逻辑一致，无歧义，推理可靠性高"
     },
     "step7_faithful_synthesis": {
-      "adjustment_log": "happy: 0.05→0.00(检测到反讽，原文无真实正面情绪)，angry: 0.82→0.90(检测到否定词与反讽，强化负面情绪权重)",
+      "adjustment_log": "angry: 0.82→0.90(检测到否定词与反讽，强化负面情绪权重)",
       "hallucination_flags": []
     }
   },
   "raw_intensity_scores": {
     "angry": 0.90,
-    "fear": 0.02,
+    "fear": 0.00,
     "happy": 0.00,
-    "neutral": 0.03,
-    "sad": 0.02,
-    "surprise": 0.01
+    "neutral": 0.00,
+    "sad": 0.00,
+    "surprise": 0.00
   },
   "primary_emotion": "angry",
   "vad_dimensions": {
