@@ -25,21 +25,21 @@ interface ModelData {
 const models: ModelData[] = [
   {
     id: 'base',
-    name: 'Qwen2.5-7B-Base',
+    name: 'Qwen3-8B-Base',
     icon: <BlockOutlined />,
     description: '原始基座模型',
     colors: ['#64748b', '#475569'],
   },
   {
     id: 'lora',
-    name: 'Qwen2.5-7B-LoRA',
+    name: 'Qwen3-8B-LoRA',
     icon: <ThunderboltOutlined />,
     description: 'LoRA 微调模型',
     colors: ['#ff6b4a', '#ff8f73'],
   },
   {
     id: 'gguf',
-    name: 'Qwen2.5-7B-GGUF',
+    name: 'Qwen3-8B-GGUF',
     icon: <ExperimentOutlined />,
     description: '量化压缩模型',
     colors: ['#06b6d4', '#22d3ee'],
@@ -55,8 +55,6 @@ interface ComparisonMetrics {
   primary_cls_macro_f1?: number
   primary_cls_macro_auc?: number
   primary_cls_macro_ap?: number
-  mbti_accuracy?: number
-  mbti_macro_f1?: number
   json_parse_rate?: number
   cot7_complete_rate?: number
   emotion_per_dim_mae?: Record<string, number>
@@ -118,7 +116,6 @@ const defaultPerformanceMetrics: PerformanceMetric[] = [
   { metric: 'AUC', base: 82.0, lora: 94.3, gguf: 91.0, unit: '%', isMaeRow: false },
   { metric: 'AP', base: 81.0, lora: 92.1, gguf: 89.5, unit: '%', isMaeRow: false },
   { metric: 'Emotion MAE', base: 0.185, lora: 0.142, gguf: 0.158, unit: '', isMaeRow: true, baseMae: 0.185, loraMae: 0.142, ggufMae: 0.158 },
-  { metric: 'MBTI Acc', base: 48.0, lora: 52.0, gguf: 50.0, unit: '%', isMaeRow: false },
   { metric: 'JSON Parse', base: 92.0, lora: 94.0, gguf: 93.0, unit: '%', isMaeRow: false },
   { metric: 'CoT Complete', base: 85.0, lora: 89.0, gguf: 87.0, unit: '%', isMaeRow: false },
 ]

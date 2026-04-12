@@ -137,8 +137,6 @@ interface EvalV2MetricsData {
   emotion_per_dim_mae?: Record<string, number>
   emotion_macro_mae?: number
   emotion_macro_mse?: number
-  mbti_accuracy?: number
-  mbti_macro_f1?: number
   json_parse_rate?: number
   cot7_complete_rate?: number
 }

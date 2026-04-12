@@ -22,13 +22,13 @@ const Home: React.FC = () => {
     {
       icon: <ThunderboltOutlined />,
       title: '多任务联合预测',
-      description: '同时预测情绪强度、主要情绪、MBTI 人格类型和 7 步思维链推理',
+      description: '同时预测情绪强度、主要情绪和 7 步思维链推理',
       color: '#ff6b4a',
     },
     {
       icon: <CheckCircleOutlined />,
       title: 'LoRA 微调优化',
-      description: '基于 Qwen2.5-7B-Instruct 的 LoRA 微调，性能提升显著',
+      description: '基于 Qwen3-8B-Instruct 的 LoRA 微调，性能提升显著',
       color: '#10b981',
     },
     {
@@ -40,10 +40,10 @@ const Home: React.FC = () => {
   ]
 
   const metrics = [
-    { label: '情绪分类准确率', value: '81', suffix: '%', sub: 'LoRA 微调后', trend: '+9%' },
-    { label: '情绪回归 MAE', value: '0.14', suffix: '', sub: '越低越好', trend: '-23%' },
-    { label: 'MBTI 预测准确率', value: '52', suffix: '%', sub: '16 型人格', trend: '+7%' },
-    { label: 'JSON 解析率', value: '94', suffix: '%', sub: '结构化输出', trend: '+5%' },
+    { label: '情绪分类准确率', value: '82', suffix: '%', sub: 'LoRA 微调后', trend: '+24%' },
+    { label: '情绪回归 MAE', value: '0.072', suffix: '', sub: '越低越好', trend: '+56%' },
+    { label: 'Macro F1 SCORE', value: '0.74', suffix: '', sub: '分类均衡性', trend: '+53%' },
+    { label: 'AUC-ROC', value: '0.94', suffix: '', sub: '模型区分度', trend: '+25%' },
   ]
 
   return (
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
           <Paragraph className="hero-description">
             基于多任务 LoRA 微调大模型的社交平台情感分析系统
             <br />
-            支持情绪强度预测、主要情绪分类、MBTI 人格推断和 7 步思维链推理生成
+            支持情绪强度预测、主要情绪分类和 7 步思维链推理生成
           </Paragraph>
 
           <div className="hero-actions">

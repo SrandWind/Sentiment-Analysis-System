@@ -1,13 +1,13 @@
 # 情感分析系统
 
-基于 Qwen2.5-7B-Instruct 的中文多模态情感分析系统，支持 CoT 推理、VAD 评分、MBTI 推断。
+基于 Qwen3-8B-Instruct 的中文多模态情感分析系统，支持 CoT 推理、VAD 评分、MBTI 推断。
 
 ## 快速开始
 
 ### 1. 启动 LMStudio
 
 1. 下载 [LMStudio](https://lmstudio.ai/)
-2. 下载模型 `Qwen2.5-7B-Instruct` (GGUF Q4_K_M)
+2. 下载模型 `Qwen3-8B-Instruct` (GGUF Q4_K_M)
 3. 启动 Local Server，确保地址为 `http://localhost:1234/v1`
 
 ### 2. 启动后端
@@ -57,7 +57,7 @@ npm run dev
 | 后端 | FastAPI, SQLAlchemy, Uvicorn |
 | 前端 | React 18, Ant Design 5, ECharts 5, Vite 5 |
 | 推理 | LMStudio (本地) / vLLM (云端) |
-| 模型 | Qwen2.5-7B-Instruct + LoRA 微调 |
+| 模型 | Qwen3-8B-Instruct + LoRA 微调 |
 
 ---
 

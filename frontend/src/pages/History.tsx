@@ -32,7 +32,6 @@ interface HistoryItem {
   id: number
   text: string
   primary_emotion: string
-  mbti_type: string
   scores?: Record<string, number>
   raw_intensity_scores?: Record<string, number>
   target_scores?: Record<string, number>
@@ -65,7 +64,6 @@ interface DetailItem {
     [key: string]: any
   }
   primary_emotion: string
-  mbti_type: string
   cot_reasoning: Record<string, string>
   latency_ms: number
   json_parse_ok: boolean

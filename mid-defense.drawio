@@ -1,0 +1,714 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="p1" name="封面">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="基于Qwen3-8B的\n中文多模态情感分析系统" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=48;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="200" y="300" width="1520" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="硕士学位论文中期答辩" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="200" y="520" width="1520" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="info" value="汇报人：王少坤\n学号：2022217506\n指导教师：李佳" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="700" y="650" width="520" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=16;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1000" width="280" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p2" name="目录">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  目录" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="contents" value="CONTENTS" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=60;fontColor=#1F497D;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="120" y="180" width="500" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="item1" value="01  研究背景与意义" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="300" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="item2" value="02  研究目标" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="360" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="item3" value="03  相关工作" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="420" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="item4" value="04  系统架构与实现" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="480" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="item5" value="05  模型微调方法" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="540" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="item6" value="06  实验设计与结果" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="600" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="item7" value="07  总结与后续计划" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="660" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p3" name="01研究背景">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  01. 研究背景与意义" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="badge1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="180" width="8" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle1" value="情感分析的应用场景" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="180" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content1" value="• 社交媒体舆情监控：实时分析用户评论情感倾向\n• 客服系统：自动识别客户情绪，优化服务策略\n• 金融领域：分析新闻和社交媒体预测市场情绪\n• 教育领域：监测学生学习状态与情感反馈\n• 医疗健康：辅助心理疾病筛查与干预" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="230" width="800" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="badge2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="540" width="8" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle2" value="研究意义" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="540" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content2" value="• 传统情感分析仅返回单一情绪标签，信息维度有限\n• 细粒度情感分析需要多维度评估（效价、唤醒度、支配度）\n• 大语言模型具备深度语义理解能力，适合复杂情感推理\n• Chain-of-Thought推理可提供可解释的情感分析结果" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="590" width="800" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="highlight" value="多模态情感分析\n= 文本 + 认知推理 + 人格推断" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="300" width="700" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p4" name="02研究目标">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  02. 研究目标" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal1" value="核心目标\n\n基于Qwen3-8B大语言模型，\n构建支持Chain-of-Thought推理的\n中文多模态情感分析系统" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="400" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal2" value="功能指标\n\n• 主情感分类（6类）\n• VAD情感评分\n• MBTI人格推断\n• CoT推理链可视化\n• 多模式推理支持" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=18;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="200" width="400" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal3" value="技术指标\n\n• 准确率 &gt; 80%\n• F1 Score &gt; 0.75\n• AUC-ROC &gt; 0.90\n• Emotion MAE &lt; 0.10\n• 推理延迟 &lt; 500ms" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=18;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="200" width="400" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal4" value="部署指标\n\n• 支持本地LM Studio部署\n• 支持云端vLLM部署\n• GGUF 4bit量化压缩\n• Web界面可视化展示" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=18;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="200" width="400" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="highlight" value="创新点：7步Chain-of-Thought推理链 + 红线规则防幻觉" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="600" width="1720" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p5" name="03相关工作">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  03. 相关工作" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="header1" value="传统方法" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="180" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content1" value="• SVM、朴素贝叶斯等机器学习模型\n• 依赖手工特征工程\n• 难以捕捉深层语义信息\n• 情感词典方法受限于词典覆盖" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="230" width="400" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="header2" value="深度学习方法" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="180" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content2" value="• BERT、RoBERTa等预训练模型\n• TextCNN、LSTM等序列模型\n• 需要大量标注数据微调\n• 缺乏可解释性" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="230" width="400" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="header3" value="大语言模型方法" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="180" width="800" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content3" value="• GPT-4、Claude等通用LLM\n• 强大的零样本/少样本能力\n• 支持Chain-of-Thought推理\n• API调用成本高、隐私风险" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="230" width="800" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="gap_header" value="现有方法的不足" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C0504D;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="500" width="1720" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="gap1" value="❌ 仅返回单一情绪标签\n缺乏多维度情感评估" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="570" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="gap2" value="❌ 缺乏可解释性\n推理过程不可见" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="570" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="gap3" value="❌ 无法推断用户人格\n缺乏个性化理解" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="570" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="gap4" value="❌ 云端API依赖\n隐私与成本问题" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="570" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p6" name="04系统架构">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  04. 系统架构与实现" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="layer1" value="用户输入层\n\n文本输入\n推理模式选择\nCoT开关" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#0170C1;align=center;verticalAlign=middle;fontSize=16;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="350" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="480" y="280" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="layer2" value="前端展示层\n\nReact 18\nAnt Design 5\nECharts 5\nVite 5" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#0170C1;align=center;verticalAlign=middle;fontSize=16;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="200" width="350" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="940" y="280" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="layer3" value="后端服务层\n\nFastAPI\nSQLAlchemy\nUvicorn\nMySQL" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#0170C1;align=center;verticalAlign=middle;fontSize=16;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="200" width="350" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="280" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="layer4" value="推理引擎层\n\nLM Studio (本地)\nvLLM (云端)\nQwen3-8B\nLoRA微调" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#0170C1;align=center;verticalAlign=middle;fontSize=16;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="200" width="350" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="flow_label" value="HTTP/JSON" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="260" width="350" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="features_header" value="核心功能特性" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="450" width="1720" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="feat1" value="CoT推理链\n7步Chain-of-Thought\n可解释性分析" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="510" width="400" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="feat2" value="VAD评分\n效价/唤醒度/支配度\n三维情感模型" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="510" width="400" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="feat3" value="MBTI推断\n基于文本的\n人格类型预测" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="510" width="400" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="feat4" value="红线规则\n防幻觉机制\n无证据分为0" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="510" width="400" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p7" name="05模型微调">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  05. 模型微调方法" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="badge1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="180" width="8" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle1" value="LoRA微调策略" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="180" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content1" value="• 基础模型：Qwen3-8B-Instruct\n• 微调方法：Lora (Low-Rank Adaptation)\n• Lora Rank: 16, Alpha: 32\n• 目标模块：q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj\n• 学习率：1e-4, Epochs: 3\n• 训练框架：LLaMA-Factory / ms-swift" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="230" width="700" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="badge2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="900" y="180" width="8" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle2" value="7步CoT重标注" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="920" y="180" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content2" value="• 步骤1：提取显式情感信号\n• 步骤2：识别隐式情感信号\n• 步骤3：确定情感强度\n• 步骤4：识别情感原因\n• 步骤5：主情感判断\n• 步骤6：MBTI推断\n• 步骤7：最终总结" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="920" y="230" width="700" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="highlight" value="红线规则（防幻觉）：无证据的情绪分数必须 ≤ 0.03" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C0504D;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="550" width="1720" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="data_header" value="多任务数据集" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="660" width="1720" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="task1" value="task_emotion_reg\n情感回归" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="720" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="task2" value="task_primary_cls\n主情感分类" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="720" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="task3" value="task_mbti_pred\nMBTI预测" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="720" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="task4" value="task_cot_gen\nCoT生成" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="720" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p8" name="06CoT推理">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  06. Chain-of-Thought推理过程" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="input" value="输入文本：\n&quot;今天面试失败了，感觉自己一无是处...&quot;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#F7F8FA;align=left;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;strokeWidth=2;strokeColor=#1F497D;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="step1" value="Step 1: 提取显式情感\n&quot;面试失败&quot; → 负面信号\n&quot;一无是处&quot; → 自我否定" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E3F2FD;align=left;verticalAlign=top;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="300" width="400" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="step2" value="Step 2: 识别隐式情感\n• 叹气/无奈语气（隐含）\n• 自我评价偏低（隐含）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E8F5E9;align=left;verticalAlign=top;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="300" width="400" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="step3" value="Step 3: 确定情感强度\n悲伤强度：高 (0.85)\n焦虑程度：中 (0.60)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFF3E0;align=left;verticalAlign=top;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="300" width="400" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="step4" value="Step 4: 识别情感原因\n• 面试挫折\n• 自我价值怀疑" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FCE4EC;align=left;verticalAlign=top;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="300" width="400" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="step5" value="Step 5: 主情感判断\n主情感：悲伤 (sad)\n置信度：0.92" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E1F5FE;align=left;verticalAlign=top;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="460" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="step6" value="Step 6: MBTI推断\n可能类型：INFP/ISFP\n（内倾、情感型）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#F3E5F5;align=left;verticalAlign=top;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="560" y="460" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="step7" value="Step 7: 最终总结\n该用户在经历挫折后产生\n自我否定情绪，需要鼓励" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E0F7FA;align=left;verticalAlign=top;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="460" width="400" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="result" value="输出结果：\n• 主情感：悲伤 (sad)\n• 情感分数：sad=0.85, angry=0.05, neutral=0.10\n• VAD: V=-0.6, A=0.4, D=0.3\n• MBTI: INFP\n• 建议：给予鼓励和肯定" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="460" width="400" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" value="⚠️ CoT示例图示：实际内容请从前端截图后替换" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="720" width="1720" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p9" name="07量化部署">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  07. GGUF量化与部署方案" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="header" value="量化方案对比" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="1720" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="table_header1" value="指标" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="220" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="table_header2" value="Base (FP16)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="300" y="220" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="table_header3" value="GGUF Q4_K_M" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="800" y="220" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="table_header4" value="LoRA Merged" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="220" width="520" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row1_k" value="模型大小" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E2E8F0;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="270" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row1_v1" value="16.0 GB" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="300" y="270" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row1_v2" value="4.8 GB" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C8E6C9;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="800" y="270" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row1_v3" value="16.0 GB" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="270" width="520" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row2_k" value="显存需求" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E2E8F0;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="320" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row2_v1" value="18.5 GB" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="300" y="320" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row2_v2" value="7.2 GB" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C8E6C9;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="800" y="320" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row2_v3" value="18.5 GB" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="320" width="520" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row3_k" value="推理延迟" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E2E8F0;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="370" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row3_v1" value="380 ms" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="300" y="370" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row3_v2" value="280 ms" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C8E6C9;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="800" y="370" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row3_v3" value="350 ms" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="370" width="520" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row4_k" value="吞吐量" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E2E8F0;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="420" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row4_v1" value="10.5 sps" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="300" y="420" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row4_v2" value="15.5 sps" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C8E6C9;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="800" y="420" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row4_v3" value="12.0 sps" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="420" width="520" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row5_k" value="精度损失" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E2E8F0;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="470" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row5_v1" value="基准" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="300" y="470" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row5_v2" value="轻微" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="800" y="470" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="row5_v3" value="无（微调后）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C8E6C9;align=center;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="470" width="520" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="conclusion" value="结论：GGUF Q4量化在保持高精度的同时，显存需求降低60%，推理速度提升26%\n推荐：开发阶段使用LoRA微调模型，生产环境使用GGUF Q4量化部署" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="560" width="1720" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p10" name="08实验设计">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  08. 实验设计与结果" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="badge1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="8" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle1" value="实验设置" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="160" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="content1" value="• 数据集：中文多模态情感数据集（CMACD）\n• 训练集/验证集/测试集：7:1:2划分\n• 评估指标：Accuracy, F1, AUC-ROC, Emotion MAE\n• 对比基线：Base模型、GGUF量化模型、LoRA微调模型" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="210" width="800" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="badge2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="430" width="8" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle2" value="情感类别" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="430" width="400" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="emotions" value="happy（开心）  neutral（中性）  sad（悲伤）\nangry（愤怒）  fear（恐惧）  surprise（惊讶）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="120" y="480" width="800" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="results_header" value="实验结果" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="960" y="160" width="860" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="res_table" value="指标          Base      GGUF Q4    LoRA\n准确率        58%       72%        82%\nF1 Score     0.48      0.62       0.74\nAUC-ROC      0.75      0.88       0.94\nEmotion MAE  0.165     0.105      0.072" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=16;fontColor=#1A1A2E;fontFamily=Consolas;" vertex="1" parent="1">
+          <mxGeometry x="960" y="220" width="860" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="highlight" value="LoRA微调后：准确率提升+24%，F1提升+54%，Emotion MAE降低56%" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C8E6C9;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="960" y="440" width="860" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="chart_placeholder" value="📊 性能对比柱状图\n（请替换为实际图表截图）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="600" width="1720" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p11" name="09模型对比">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  09. 模型对比分析" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="radar_placeholder" value="📈 雷达图：Base vs GGUF vs LoRA\n\n（请替换为实际图表截图）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;fontSize=20;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="850" height="350" as="geometry"/>
+        </mxCell>
+        <mxCell id="improvement" value="改进幅度（LoRA vs Base）\n\n准确率\n████████████ 58% → 82% (+24%)\n\nF1 Score\n████████████ 0.48 → 0.74 (+54%)\n\nAUC-ROC\n████████████ 0.75 → 0.94 (+25%)\n\nEmotion MAE\n████████████ 0.165 → 0.072 (-56%)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E8F5E9;align=left;verticalAlign=top;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="160" width="820" height="350" as="geometry"/>
+        </mxCell>
+        <mxCell id="per_class_header" value="各类别F1 Score对比" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="540" width="1720" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="per_class" value="类别     Base    GGUF Q4    LoRA\nhappy    0.73     0.81       0.91\nangry    0.51     0.73       0.87\nsad      0.53     0.62       0.73\nneutral  0.46     0.63       0.77\nfear     0.44     0.61       0.81\nsurprise 0.30     0.42       0.67" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=16;fontColor=#1A1A2E;fontFamily=Consolas;" vertex="1" parent="1">
+          <mxGeometry x="100" y="590" width="1720" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p12" name="10训练曲线">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  10. 训练曲线（SwanLab）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="curve1_placeholder" value="📊 训练损失曲线\nLoss vs Steps\n（请替换为SwanLab截图）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="850" height="380" as="geometry"/>
+        </mxCell>
+        <mxCell id="curve2_placeholder" value="📊 验证准确率曲线\nVal Acc vs Steps\n（请替换为SwanLab截图）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="160" width="820" height="380" as="geometry"/>
+        </mxCell>
+        <mxCell id="link_label" value="SwanLab项目链接" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#C9A84C;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="570" width="1720" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="link_url" value="https://swanlab.cn/project/cmacd-lora-v2/cmacd-v2-relabel-run1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;fontColor=#0170C1;fontFamily=微软雅黑;text-decoration=underline;" vertex="1" parent="1">
+          <mxGeometry x="100" y="620" width="1720" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" value="💡 提示：训练曲线可通过以下命令导出\npython export_training_history.py --project cmacd-lora-v2 --experiment cmacd-v2-relabel-run1 --output frontend/public/output/training_history.json" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#E3F2FD;align=left;verticalAlign=middle;fontSize=14;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="680" width="1720" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p13" name="11总结">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F8FA;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="goldline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="120" width="1920" height="6" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="  11. 总结与后续计划" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="done_header" value="✓ 已完成" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#4CAF50;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="820" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="done_content" value="✅ 系统架构设计与实现\n✅ 7步Chain-of-Thought推理链\n✅ LoRA微调训练流程\n✅ GGUF量化部署方案\n✅ Web可视化界面\n✅ 多模型对比评估" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="220" width="820" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="todo_header" value="→ 后续计划" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#FF9800;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="160" width="820" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="todo_content" value="📋 MBTI推断精度提升\n📋 更多情感数据集测试\n📋 多语言情感分析扩展\n📋 端侧部署优化（Qwen3-8B）\n📋 论文撰写" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=18;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="220" width="820" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="timeline_header" value="时间规划" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#1F497D;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="540" width="1720" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="timeline" value="4月        5月        6月        7月        8月\n论文初稿 → 论文修改 → 论文定稿 → 答辩准备 → 正式答辩" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontColor=#1A1A2E;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="100" y="590" width="1720" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="botline" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1040" width="1920" height="4" as="geometry"/>
+        </mxCell>
+        <mxCell id="date" value="2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=14;fontColor=#4A5568;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1044" width="280" height="36" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p14" name="致谢">
+    <mxGraphModel page="1" pageWidth="1920" pageHeight="1080">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F497D;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1920" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="thanks" value="感谢各位老师的聆听与指导！" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=48;fontStyle=1;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="200" y="300" width="1520" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="qa" value="Q and A" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=72;fontStyle=1;fontColor=#C9A84C;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="700" y="450" width="520" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="info" value="汇报人：王少坤\n指导教师：李佳\n2026年4月" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=18;fontColor=#FFFFFF;fontFamily=微软雅黑;" vertex="1" parent="1">
+          <mxGeometry x="700" y="700" width="520" height="150" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

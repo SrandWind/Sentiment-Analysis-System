@@ -25,7 +25,6 @@ class InferResponse(BaseModel):
     target_scores: Optional[Dict[str, float]] = None
     cot: Dict[str, str]
     primary_emotion: str
-    mbti_type: str
     confidence: float
     json_parse_ok: bool
     cot_complete: bool
@@ -63,7 +62,6 @@ class HistoryItem(BaseModel):
     id: int
     text: str
     primary_emotion: str
-    mbti_type: Optional[str] = ""
     target_scores: Optional[Dict[str, float]] = None
     confidence: float
     latency_ms: float
@@ -96,10 +94,8 @@ class MetricsResponse(BaseModel):
     primary_cls_macro_f1: float
     primary_cls_macro_auc: Optional[float] = None
     primary_cls_macro_ap: Optional[float] = None
-    mbti_accuracy: float
     aggregated_pr_curve: Optional[List[Dict[str, float]]] = None
     aggregated_roc_curve: Optional[List[Dict[str, float]]] = None
-    mbti_macro_f1: float
     json_parse_rate: float
     cot7_complete_rate: float
     emotion_per_dim_mae: Optional[Dict[str, float]] = None

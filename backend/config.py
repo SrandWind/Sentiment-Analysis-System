@@ -49,7 +49,7 @@ class Settings(BaseSettings):
 
     # LMStudio API settings
     lmstudio_base_url: str = "http://localhost:1234/v1"
-    lmstudio_model: str = "qwen2.5-7b-instruct"
+    lmstudio_model: str = "qwen3-8b-instruct"
 
     # Database settings (default to in-memory SQLite for no-config startup)
     database_url: str = "sqlite+aiosqlite:///:memory:"

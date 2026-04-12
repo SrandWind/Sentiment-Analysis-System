@@ -19,7 +19,7 @@
 ### 1. 启动 LMStudio
 
 1. 下载并安装 [LMStudio](https://lmstudio.ai/)
-2. 下载模型：`Qwen2.5-7B-Instruct`，GGUF Q4_K_M 量化版本
+2. 下载模型：`Qwen3-8B-Instruct`，GGUF Q4_K_M 量化版本
 3. 点击 **Start Server**，确保地址为 `http://localhost:1234/v1`
 
 ### 2. 启动后端
@@ -75,8 +75,8 @@ cd frontend && npm install
 
 ```bash
 pip install huggingface_hub
-huggingface-cli download --resume-download Qwen/Qwen2.5-7B-Instruct \
-  --local-dir /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct
+huggingface-cli download --resume-download Qwen/Qwen3-8B-Instruct \
+  --local-dir /root/autodl-tmp/models/Qwen/Qwen3-8B-Instruct
 ```
 
 ### 3. 配置后端
@@ -89,7 +89,7 @@ cat > .env << EOF
 BACKEND_HOST=0.0.0.0
 BACKEND_PORT=8000
 LMSTUDIO_BASE_URL=http://localhost:8001/v1
-LMSTUDIO_MODEL=Qwen2.5-7B-Instruct
+LMSTUDIO_MODEL=Qwen3-8B-Instruct
 DATABASE_URL=sqlite:///./sentiment.db
 DEPLOY_MODE=server
 CORS_ORIGINS=http://localhost:3000,http://your-instance-ip:3000
@@ -102,7 +102,7 @@ EOF
 # 启动 vLLM 推理服务
 cd /root/autodl-tmp
 nohup python -m vllm.entrypoints.api_server \
-  --model /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct \
+  --model /root/autodl-tmp/models/Qwen/Qwen3-8B-Instruct \
   --host 0.0.0.0 \
   --port 8001 \
   --dtype auto \

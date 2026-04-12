@@ -34,7 +34,6 @@ class InferenceHistory(Base):
 
     # Classification results
     primary_emotion = Column(String(50))
-    mbti_type = Column(String(10))
 
     # CoT reasoning (stored as JSON for structured access)
     cot_reasoning = Column(JSON)

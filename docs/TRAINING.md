@@ -29,7 +29,7 @@ python data/new_v2.py --input_dir data/dataset --output_dir data/dataset
 python data/relabel_v2_with_model.py \
   --input_dir data/dataset \
   --output_dir data/dataset \
-  --model /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct \
+  --model /root/autodl-tmp/models/Qwen/Qwen3-8B-Instruct \
   --infer_backend vllm \
   --max_model_len 8192 \
   --max_batch_size 8 \
@@ -78,7 +78,7 @@ llamafactory-cli train train_lora_v2.yaml
 
 **AutoDL 配置调整**：
 ```yaml
-model_name_or_path: /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct
+model_name_or_path: /root/autodl-tmp/models/Qwen/Qwen3-8B-Instruct
 dataset_dir: /root/autodl-tmp/data/dataset
 ```
 
@@ -86,7 +86,7 @@ dataset_dir: /root/autodl-tmp/data/dataset
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 swift sft \
-  --model /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct \
+  --model /root/autodl-tmp/models/Qwen/Qwen3-8B-Instruct \
   --dataset /root/autodl-tmp/data/dataset/train_v2_relabel.json \
   --val_dataset /root/autodl-tmp/data/dataset/dev_v2_relabel.json \
   --train_type lora \

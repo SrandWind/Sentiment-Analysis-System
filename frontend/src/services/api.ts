@@ -48,7 +48,6 @@ export interface InferResponse {
   target_scores?: Record<string, number>
   primary_emotion: string
   confidence: number
-  mbti_type: string
   cot: Record<string, string>
   json_parse_ok: boolean
   cot_complete?: boolean
@@ -76,7 +75,6 @@ export interface StreamChunk {
   target_scores?: Record<string, number>
   primary_emotion?: string
   confidence?: number
-  mbti_type?: string
   cot?: Record<string, string>
   json_parse_ok?: boolean
   cot_complete?: boolean
@@ -146,8 +144,6 @@ export interface MetricsResponse {
     matrix: number[][]
     labels: string[]
   }
-  mbti_accuracy: number
-  mbti_macro_f1: number
   json_parse_rate: number
   cot7_complete_rate: number
 }

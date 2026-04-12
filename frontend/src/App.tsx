@@ -97,7 +97,7 @@ const AppContent: React.FC = () => {
             面向社交平台的指令微调大模型情感分析系统设计与实现
           </div>
           <div className="footer-sub">
-            毕业设计 © 2026 | 基于 Qwen2.5-7B-Instruct + LoRA 多任务学习
+            毕业设计 © 2026 | 基于 Qwen3-8B-Instruct + LoRA 多任务学习
           </div>
         </div>
       </Footer>

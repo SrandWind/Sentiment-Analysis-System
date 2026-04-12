@@ -90,8 +90,6 @@ PRECOMPUTED_METRICS = {
         "emotion_macro_mse": 0.052,
         "primary_cls_accuracy": 0.72,
         "primary_cls_macro_f1": 0.71,
-        "mbti_accuracy": 0.45,
-        "mbti_macro_f1": 0.42,
         "json_parse_rate": 0.89,
         "cot7_complete_rate": 0.85,
         "emotion_per_dim_mae": {
@@ -109,8 +107,6 @@ PRECOMPUTED_METRICS = {
         "emotion_macro_mse": 0.035,
         "primary_cls_accuracy": 0.81,
         "primary_cls_macro_f1": 0.80,
-        "mbti_accuracy": 0.52,
-        "mbti_macro_f1": 0.48,
         "json_parse_rate": 0.94,
         "cot7_complete_rate": 0.91,
         "emotion_per_dim_mae": {
@@ -128,8 +124,6 @@ PRECOMPUTED_METRICS = {
         "emotion_macro_mse": 0.038,
         "primary_cls_accuracy": 0.79,
         "primary_cls_macro_f1": 0.78,
-        "mbti_accuracy": 0.50,
-        "mbti_macro_f1": 0.46,
         "json_parse_rate": 0.92,
         "cot7_complete_rate": 0.88,
         "emotion_per_dim_mae": {
@@ -191,7 +185,6 @@ async def infer(request: InferRequest, db: Session = Depends(get_db)):
             emotion_sad=display_scores.get("sad", 0.0),
             emotion_surprise=display_scores.get("surprise", 0.0),
             primary_emotion=parsed["primary_emotion"],
-            mbti_type=parsed.get("mbti_type", ""),
             cot_reasoning=parsed["cot"],
             model_variant=request.model_variant,
             latency_ms=parsed["latency_ms"],
@@ -210,7 +203,6 @@ async def infer(request: InferRequest, db: Session = Depends(get_db)):
             target_scores=parsed.get("target_scores"),
             cot=parsed["cot"],
             primary_emotion=parsed["primary_emotion"],
-            mbti_type=parsed.get("mbti_type", ""),
             confidence=parsed.get("confidence", 0.0),
             json_parse_ok=parsed["json_parse_ok"],
             cot_complete=parsed["cot_complete"],
@@ -288,7 +280,6 @@ async def infer_stream(request: InferRequest):
                         emotion_sad=display_scores.get("sad", 0.0),
                         emotion_surprise=display_scores.get("surprise", 0.0),
                         primary_emotion=parsed_result["primary_emotion"],
-                        mbti_type=parsed_result.get("mbti_type", ""),
                         cot_reasoning=parsed_result["cot"],
                         model_variant=request.model_variant,
                         latency_ms=parsed_result["latency_ms"],
@@ -571,7 +562,6 @@ async def get_history(
                 id=item.id,
                 text=item.text,
                 primary_emotion=item.primary_emotion,
-                mbti_type=item.mbti_type,
                 target_scores=get_scores(item),
                 confidence=get_confidence(item),
                 latency_ms=item.latency_ms,
@@ -639,7 +629,6 @@ async def get_history_item(item_id: int, db: Session = Depends(get_db)):
         "scores": get_display_scores(),
         "cot": item.cot_reasoning,
         "primary_emotion": item.primary_emotion,
-        "mbti_type": item.mbti_type,
         "confidence": get_confidence(),
         "latency_ms": item.latency_ms,
         "json_parse_ok": item.json_parse_ok,
@@ -689,7 +678,7 @@ async def compare_models(request: CompareRequest = None):
         )
 
     # Generate markdown comparison table
-    headers = ["模型", "MAE", "分类准确率", "F1", "MBTI 准确率", "JSON 解析率", "CoT 完成率"]
+    headers = ["模型", "MAE", "分类准确率", "F1", "JSON 解析率", "CoT 完成率"]
     rows = [headers, ["---"] * len(headers)]
     for m in models:
         rows.append([
@@ -697,7 +686,6 @@ async def compare_models(request: CompareRequest = None):
             f"{m.emotion_macro_mae:.4f}",
             f"{m.primary_cls_accuracy:.4f}",
             f"{m.primary_cls_macro_f1:.4f}",
-            f"{m.mbti_accuracy:.4f}",
             f"{m.json_parse_rate:.4f}",
             f"{m.cot7_complete_rate:.4f}"
         ])
