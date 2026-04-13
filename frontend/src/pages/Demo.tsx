@@ -43,12 +43,6 @@ const VAD_LABELS: Record<string, string> = {
   dominance: '支配度',
 }
 
-const VAD_VALUE_LABELS: Record<string, (v: number) => string> = {
-  valence: (v) => v > 0.65 ? '正' : v < 0.35 ? '负' : '中性',
-  arousal: (v) => v > 0.65 ? '高' : v < 0.35 ? '低' : '中',
-  dominance: (v) => v > 0.65 ? '高' : v < 0.35 ? '低' : '中',
-}
-
 const UNCERTAINTY_LABELS: Record<string, { label: string; color: string; icon: string }> = {
   low: { label: '低', color: '#52c41a', icon: '🟢' },
   medium: { label: '中', color: '#faad14', icon: '🟡' },
@@ -329,7 +323,7 @@ const parseStep2DimensionalAnalysis = (data: any): ParsedCotContent => {
                   showInfo={false}
                 />
                 <span className="vad-bar-value">
-                  {value.toFixed(2)} ({VAD_VALUE_LABELS[key](value)})
+                  {value.toFixed(2)} ({vadLabels[key]})
                 </span>
               </div>
             )
@@ -1328,7 +1322,7 @@ const Demo: React.FC = () => {
                                   size="small"
                                 />
                                 <div className="vad-value">
-                                  {value.toFixed(2)} ({VAD_VALUE_LABELS[key](value)})
+                                  {value.toFixed(2)} ({vadLabels[key]})
                                 </div>
                               </div>
                             </Col>
