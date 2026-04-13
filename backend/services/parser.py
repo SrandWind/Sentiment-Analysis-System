@@ -500,6 +500,18 @@ def validate_emotion_output(model_output: str, input_text: str) -> Tuple[bool, d
     if no_evidence_scores:
         return (False, output_data, f"NO_EVIDENCE_SCORE: {', '.join(no_evidence_scores)}")
     
+    step2 = cot_cot.get("step2_dimensional_analysis", {}) if isinstance(cot_cot, dict) else {}
+    initial_scores = step2.get("initial_scores", {}) if isinstance(step2, dict) else {}
+    if isinstance(initial_scores, dict) and initial_scores:
+        initial_no_evidence = []
+        for emo, score in initial_scores.items():
+            if emo in EMOTIONS and float(score) > 0:
+                emo_evidence = evidence.get(emo, []) if isinstance(evidence, dict) else []
+                if isinstance(emo_evidence, list) and len(emo_evidence) == 0:
+                    initial_no_evidence.append(f"{emo}={score}")
+        if initial_no_evidence:
+            return (False, output_data, f"STEP2_INITIAL_NO_EVIDENCE: step2.initial_scores中{', '.join(initial_no_evidence)}在step1无evidence")
+    
     max_score = max(float(raw_scores[emo]) for emo in EMOTIONS)
     max_emos = [emo for emo, v in raw_scores.items() if abs(float(v) - max_score) < 0.001]
     primary_emo = output_data.get("primary_emotion", "")
@@ -582,6 +594,17 @@ def get_retry_prompt(original_prompt: str, error_msg: str) -> str:
 2. 无原文证据的情绪，分数强制为0.00
 【错误说明】
 上一次输出中，{items}，违反无证据=0分规则
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("STEP2_INITIAL_NO_EVIDENCE:"):
+        items = error_msg.replace("STEP2_INITIAL_NO_EVIDENCE:", "").strip()
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. step2.initial_scores中只能出现step1 evidence中非空的情绪
+3. step1 evidence为空数组的情绪，initial_scores中必须为0.00或直接省略
+【错误说明】
+上一次输出中，{items}，在step1无evidence
 【待分析文本】
 {original_prompt}"""
     
