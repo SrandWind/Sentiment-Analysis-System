@@ -527,12 +527,6 @@ def validate_emotion_output(model_output: str, input_text: str) -> Tuple[bool, d
         if initial_no_evidence:
             return (False, output_data, f"STEP2_INITIAL_NO_EVIDENCE: step2.initial_scores中{', '.join(initial_no_evidence)}在step1无evidence")
     
-    max_score = max(float(raw_scores[emo]) for emo in EMOTIONS)
-    max_emos = [emo for emo, v in raw_scores.items() if abs(float(v) - max_score) < 0.001]
-    primary_emo = output_data.get("primary_emotion", "")
-    if primary_emo not in max_emos:
-        return (False, output_data, f"PRIMARY_EMOTION_ERROR: 当前{primary_emo}应为{max_emos[0] if max_emos else 'unknown'}")
-    
     has_negation = any(word in input_text for word in NEGATION_WORDS)
     has_sarcasm = any(keyword in input_text for keyword in SARCASM_KEYWORDS)
     
@@ -621,17 +615,6 @@ def get_retry_prompt(original_prompt: str, error_msg: str) -> str:
 4. step1补全后才能在step2.initial_scores中给分
 【错误说明】
 上一次输出中，{items}，在step1无对应evidence
-【待分析文本】
-{original_prompt}"""
-    
-    elif error_msg.startswith("PRIMARY_EMOTION_ERROR:"):
-        current = error_msg.split("当前")[1].split("应为")[0].strip() if "当前" in error_msg else "unknown"
-        highest = error_msg.split("应为")[1].strip() if "应为" in error_msg else "unknown"
-        return f"""【绝对规则】
-1. 仅输出```json代码块，块外无任何文本
-2. primary_emotion必须是raw_intensity_scores中的最高分情绪
-【错误说明】
-上一次输出的primary_emotion为{current}，但最高分是{highest}
 【待分析文本】
 {original_prompt}"""
     
