@@ -12,26 +12,26 @@ class InferencePresets:
     
     # 快速推理：短句/单情绪简单文本（≤50字），基础CoT
     QUICK = {
-        "max_tokens": 1536,
+        "max_tokens": 800,
         "temperature": 0.03,
-        "top_p": 0.75,
-        "repeat_penalty": 1.10,
+        "top_p": 0.65,
+        "repeat_penalty": 1.02,
     }
     
     # 标准推理：常规长度文本（50-300字），完整7步CoT【默认推荐档】
     STANDARD = {
-        "max_tokens": 2560,
+        "max_tokens": 1800,
         "temperature": 0.05,
-        "top_p": 0.80,
-        "repeat_penalty": 1.08,
+        "top_p": 0.72,
+        "repeat_penalty": 1.04,
     }
     
     # 深度推理：长文本/多段落（≥300字），混合情绪/反讽/否定词密集
     DEEP = {
-        "max_tokens": 4096,
-        "temperature": 0.07,
-        "top_p": 0.85,
-        "repeat_penalty": 1.05,
+        "max_tokens": 2800,
+        "temperature": 0.05,
+        "top_p": 0.75,
+        "repeat_penalty": 1.03,
     }
     
     @classmethod

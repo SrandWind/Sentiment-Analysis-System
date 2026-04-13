@@ -280,6 +280,9 @@ step4_cause_extraction 情绪诱因提取
 所有原因必须100%来自原文，禁止添加原文未提及的推断。
 - primary_cause：触发情绪的核心原因（字符串）
 - secondary_causes：次要原因（数组），无则为空数组
+输出primary_cause和secondary_causes后，逐句比对原文：
+  □ 该句中的每个具体事实（人物/行为/结论）→ 能在原文找到对应分句
+  □ 无法找到原文依据的事实 → 必须删除，不得以"合理推断"保留
 
 
 step5_consistency_check 一致性校验
@@ -418,7 +421,7 @@ step7_faithful_synthesis 可信性合成
 }
 ```
 
-【标准输出格式示例2：混合情绪+直接情绪词】
+【标准输出格式示例2：混合情绪+直接情绪词（精简版）】
 输入："虽然最终结果让我有点失望，但还是要感谢团队这段时间的努力，大家真的很拼，辛苦了"
 
 ```json
@@ -428,7 +431,7 @@ step7_faithful_synthesis 可信性合成
       "step1_precheck": [
         {"候选词": "失望", "原文分句": "最终结果让我有点失望", "文本支撑": "✓", "归属情绪key": "sad"},
         {"候选词": "感谢", "原文分句": "还是要感谢团队这段时间的努力", "文本支撑": "✓", "归属情绪key": "happy"},
-        {"候选词": "辛苦了", "原文分句": "大家真的很拼，辛苦了", "文本支撑": "✓", "归属情绪key": "happy（认可与温暖，效价偏正）"}
+        {"候选词": "辛苦了", "原文分句": "大家真的很拼，辛苦了", "文本支撑": "✓", "归属情绪key": "happy"}
       ],
       "cues": {
         "strong_emotion": ["失望", "感谢", "辛苦了"],
@@ -445,68 +448,28 @@ step7_faithful_synthesis 可信性合成
         "neutral": []
       },
       "dual_check": {
-        "evidence_to_cues": "2条happy evidence对应'感谢''辛苦了'线索 ✓；1条sad evidence对应'失望'线索 ✓",
-        "cues_to_evidence": "strong_emotion 3词均有对应evidence分句 ✓；weak_emotion '有点'修饰失望程度已体现在sad evidence ✓；'真的很拼'体现在happy evidence ✓",
-        "sarcasm_归属": "无反讽线索 ✓"
+        "evidence_to_cues": "✓",
+        "cues_to_evidence": "✓",
+        "sarcasm_归属": "✓"
       }
     },
     "step2_dimensional_analysis": {
       "valence": 0.52,
       "arousal": 0.42,
       "dominance": 0.55,
-      "initial_scores": {
-        "happy": 0.58,
-        "sad": 0.38
-      },
-      "emotion_mapping": "中效价+中唤醒度+中支配度 → 情绪混合，效价偏正，主导指向happy（满足/感激）"
+      "initial_scores": {"happy": 0.58, "sad": 0.38},
+      "emotion_mapping": "中效价+中唤醒度+中支配度 → 指向happy（满足/感激）"
     },
-    "step3_negation_detection": {
-      "negations_found": false,
-      "sarcasm_detected": false,
-      "adjusted_scores": {}
-    },
-    "step4_cause_extraction": {
-      "primary_cause": "团队努力付出，感到欣慰和感激",
-      "secondary_causes": ["最终结果未达预期，存在失望情绪"]
-    },
-    "step5_consistency_check": {
-      "check_items": [
-        "1. valence与情绪分数一致性：符合。valence=0.52为中效价（正负混合偏正），happy=0.58（有2条evidence，效价偏正一侧）✓；sad=0.38（有1条evidence，'有点失望'强度受'有点'弱化）✓；angry=0.00（step1无evidence，VAD不符）✓",
-        "2. arousal与angry/fear/surprise正相关：符合。arousal=0.42为中唤醒，angry=0.00（step1无evidence）✓；fear=0.00（step1无evidence）✓；surprise=0.00（step1无evidence）✓",
-        "3. dominance与angry正相关/与fear和sad负相关：基本符合。dominance=0.55为中支配，sad=0.38（低于0.50，与dominance中支配存在一定张力，但sad证据弱化词'有点'已反映低强度，可接受）✓；fear=0.00（step1无evidence）✓",
-        "4. adjusted_scores与检测结果一致：符合。无否定词无反讽，adjusted_scores为空对象{} ✓",
-        "5. evidence与分数核实：happy有2条evidence=0.58 ✓；sad有1条evidence且含弱化词'有点'=0.38 ✓；angry/fear/surprise/neutral无evidence=0.00 ✓",
-        "6. emotion_mapping与primary_emotion一致性：emotion_mapping指向'happy'，raw_intensity_scores最高分为happy=0.58，两者完全一致 ✓",
-        "7. step1双向对应核实：正向-3条evidence分句（2条happy+1条sad）均有对应cues线索 ✓；反向-3个strong_emotion线索均有evidence覆盖 ✓；2个weak_emotion线索已体现在对应evidence分句中 ✓"
-      ],
-      "vad_consistent": true,
-      "inconsistencies": []
-    },
-    "step6_uncertainty_calibration": {
-      "confidence_level": "medium",
-      "uncertain_regions": ["有点失望（弱化词使sad强度边界模糊）"],
-      "calibration_notes": "混合情绪场景，正负情绪并存，happy主导但sad不可忽略；'有点'程度词使sad强度量化存在±0.05区间不确定性"
-    },
-    "step7_faithful_synthesis": {
-      "adjustment_log": "无分数调整（step3未检测到否定词或反讽）",
-      "hallucination_flags": []
-    }
+    "step3_negation_detection": {"negations_found": false, "sarcasm_detected": false, "adjusted_scores": {}},
+    "step4_cause_extraction": {"primary_cause": "团队努力付出，感到欣慰；最终结果未达预期，存在失望", "secondary_causes": []},
+    "step5_consistency_check": {"check_items": ["无证据情绪=0.00 ✓", "emotion_mapping与primary_emotion一致 ✓", "step3无调整 ✓"], "vad_consistent": true, "inconsistencies": []},
+    "step6_uncertainty_calibration": {"confidence_level": "medium", "uncertain_regions": ["有点失望"], "calibration_notes": "混合情绪，happy主导但sad不可忽略"},
+    "step7_faithful_synthesis": {"adjustment_log": "无分数调整", "hallucination_flags": []}
   },
-  "raw_intensity_scores": {
-    "angry": 0.00,
-    "fear": 0.00,
-    "happy": 0.58,
-    "neutral": 0.00,
-    "sad": 0.38,
-    "surprise": 0.00
-  },
+  "raw_intensity_scores": {"angry": 0.00, "fear": 0.00, "happy": 0.58, "neutral": 0.00, "sad": 0.38, "surprise": 0.00},
   "primary_emotion": "happy",
-  "vad_dimensions": {
-    "valence": 0.52,
-    "arousal": 0.42,
-    "dominance": 0.55
-  },
-  "emotion_cause": "团队在困难中坚持付出，感到欣慰和感激；同时最终结果未达预期，存在失望情绪",
+  "vad_dimensions": {"valence": 0.52, "arousal": 0.42, "dominance": 0.55},
+  "emotion_cause": "团队努力付出感到欣慰；结果未达预期存在失望",
   "uncertainty_level": "medium"
 }
 ```"""
