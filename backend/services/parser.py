@@ -43,26 +43,49 @@ def clamp(v: float) -> float:
 
 
 def parse_json_safely(raw_str: str) -> Optional[dict]:
-    """安全解析JSON，兼容json5小瑕疵，极端失败返回None"""
-    raw_str = raw_str.strip()
-    if raw_str.startswith("```json"):
-        raw_str = raw_str[7:]
-    if raw_str.startswith("```"):
-        raw_str = raw_str[3:]
-    if raw_str.endswith("```"):
-        raw_str = raw_str[:-3]
+    """安全解析JSON，兼容json5小瑕疵，支持正则兜底提取"""
     raw_str = raw_str.strip()
     
+    content = raw_str
+    while "```" in content:
+        start = content.find("```")
+        end = content.find("```", start + 3)
+        if end == -1:
+            content = content[:start].strip()
+            break
+        inner = content[start + 3:end]
+        if inner.startswith("json"):
+            inner = inner[4:].strip()
+        content = inner.strip()
+        break
+    
+    if not content:
+        return None
+    
     try:
-        return json.loads(raw_str)
+        return json.loads(content)
     except json.JSONDecodeError:
         pass
     
     if json5:
         try:
-            return json5.loads(raw_str)
+            return json5.loads(content)
         except Exception:
             pass
+    
+    brace_start = content.find("{")
+    brace_end = content.rfind("}")
+    if brace_start != -1 and brace_end != -1 and brace_end > brace_start:
+        json_candidate = content[brace_start:brace_end + 1]
+        try:
+            return json.loads(json_candidate)
+        except json.JSONDecodeError:
+            pass
+        if json5:
+            try:
+                return json5.loads(json_candidate)
+            except Exception:
+                pass
     
     return None
 
@@ -302,21 +325,11 @@ def parse_model_output(text: str) -> Dict[str, Any]:
         "raw": text
     }
     
-    candidate = text.strip()
-    
-    m = re.search(r"```(?:json)?\s*([\s\S]+?)\s*```", candidate, re.I)
-    if m:
-        candidate = m.group(1)
-    
-    s, e = candidate.find("{"), candidate.rfind("}")
-    if s != -1 and e != -1 and e > s:
-        try:
-            obj = json.loads(candidate[s: e + 1])
-            _parse_json_object(obj, result)
-            result["json_ok"] = True
-            return result
-        except json.JSONDecodeError:
-            pass
+    obj = parse_json_safely(text)
+    if obj is not None:
+        _parse_json_object(obj, result)
+        result["json_ok"] = True
+        return result
     
     _parse_with_regex(text, result)
     return result
