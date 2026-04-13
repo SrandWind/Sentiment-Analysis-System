@@ -34,7 +34,7 @@ VAD_EMOTION_MAP = {
 POSITIVE_WORDS = ["happy", "joy", "great", "good", "love", "excellent", "wonderful", "开心", "高兴", "快乐", "喜欢", "棒", "好"]
 NEGATIVE_WORDS = ["sad", "angry", "fear", "hate", "bad", "terrible", "awful", "痛苦", "难过", "伤心", "生气", "害怕", "讨厌", "糟"]
 
-NEGATION_WORDS = ["不", "没", "非", "无", "别", "并未", "绝非", "何曾", "不再", "毫无", "从未", "别再", "未曾"]
+NEGATION_WORDS = ["并未", "绝非", "何曾", "不再", "毫无", "从未", "别再", "未曾", "不买了", "不会再", "不想再", "不用了", "不再买"]
 SARCASM_KEYWORDS = ["比XX还专业", "简直是个笑话", "谁买谁后悔", "绝了", "可真行", "简直绝了"]
 
 
