@@ -62,7 +62,7 @@ const STEP_TITLES: Record<string, string> = {
   step4_cause_extraction: '💡 情感归因',
   step5_consistency_check: '✅ 一致性检验',
   step6_uncertainty_calibration: '📈 置信度校准',
-  step7_faithful_synthesis: '🔄 忠诚综合',
+  step7_faithful_synthesis: '🔄 可信性综合',
 }
 
 const formatLatency = (ms: number | undefined): string => {
@@ -1361,11 +1361,11 @@ const Demo: React.FC = () => {
 
               <Row gutter={24}>
                 <Col span={12}>
-                  <Title level={5} className="chart-title">📈 原始强度分布 (CoT 推理前)</Title>
+                  <Title level={5} className="chart-title">📈 原始强度分布</Title>
                   <ReactECharts option={getBarChartOption(getRawScores(result))} style={{ height: 320 }} />
                 </Col>
                 <Col span={12}>
-                  <Title level={5} className="chart-title">📈 归一化概率分布 (CoT 推理后)</Title>
+                  <Title level={5} className="chart-title">📈 归一化概率分布</Title>
                   <ReactECharts option={getBarChartOption(getDisplayScores(result))} style={{ height: 320 }} />
                 </Col>
               </Row>

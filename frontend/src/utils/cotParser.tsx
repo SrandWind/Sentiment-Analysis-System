@@ -67,7 +67,7 @@ export const STEP_TITLES: Record<string, string> = {
   step4_cause_extraction: '💡 情感归因',
   step5_consistency_check: '✅ 一致性检验',
   step6_uncertainty_calibration: '📈 置信度校准',
-  step7_faithful_synthesis: '🔄 忠诚综合',
+  step7_faithful_synthesis: '🔄 可信性综合',
 }
 
 export const EMOTION_NAME_MAP: Record<string, string> = {

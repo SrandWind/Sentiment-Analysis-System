@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const api = axios.create({
   baseURL: '/api',
-  timeout: 30000,
+  timeout: 600000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -158,7 +158,7 @@ export const sentimentApi = {
   async infer(request: InferRequest): Promise<InferResponse> {
     // Non-streaming requests need longer timeout for CoT inference
     const response = await api.post<InferResponse>('/infer', request, {
-      timeout: 120000, // 120 seconds for complete inference
+      timeout: 600000, // 120 seconds for complete inference
     })
     return response.data
   },
@@ -245,7 +245,7 @@ export const sentimentApi = {
 
   async batchInfer(request: BatchRequest): Promise<BatchResponse> {
     const response = await api.post<BatchResponse>('/batch', request, {
-      timeout: 300000,
+      timeout: 2500000,
     })
     return response.data
   },
