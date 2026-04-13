@@ -136,9 +136,15 @@ class LMStudioClient:
                             if data.strip() == "[DONE]":
                                 latency_ms = (time.time() - start_time) * 1000
                                 
+                                import logging
+                                logging.warning(f"[PARSE_DEBUG] Output length: {len(accumulated_output)}")
+                                logging.warning(f"[PARSE_DEBUG] Output last 500 chars: {accumulated_output[-500:]}")
+                                
                                 is_valid, parsed_data, error_msg = validate_emotion_output(
                                     accumulated_output, original_prompt
                                 )
+                                
+                                logging.warning(f"[PARSE_DEBUG] Validation result: is_valid={is_valid}, error={error_msg}")
                                 
                                 if is_valid:
                                     parsed = format_inference_result(
