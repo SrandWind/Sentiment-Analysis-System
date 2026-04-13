@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Parser for extracting structured data from model output
 Multi-source confidence calculation with VAD, uncertainty, and evidence
@@ -6,36 +6,14 @@ Multi-source confidence calculation with VAD, uncertainty, and evidence
 import re
 import json
 import math
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 
+try:
+    import json5
+except ImportError:
+    json5 = None
 
 EMOTIONS = ["angry", "fear", "happy", "neutral", "sad", "surprise"]
-
-
-def normalize_emotion_scores(raw_scores: Dict[str, float]) -> Dict[str, float]:
-    """
-    将raw_intensity_scores归一化为target_scores（概率分布）
-    :param raw_scores: 模型输出的原始强度分，无总和限制
-    :return: 归一化后的概率分布，总和为1.0
-    """
-    if not raw_scores or not any(raw_scores.values()):
-        return {e: 1.0 / len(EMOTIONS) for e in EMOTIONS}
-    
-    total = sum(max(0.0, float(raw_scores.get(e, 0.0))) for e in EMOTIONS)
-    if total <= 0:
-        return {e: 1.0 / len(EMOTIONS) for e in EMOTIONS}
-    
-    normalized = {}
-    for e in EMOTIONS:
-        raw_val = max(0.0, float(raw_scores.get(e, 0.0)))
-        normalized[e] = round(raw_val / total, 4)
-    
-    current_sum = sum(normalized.values())
-    if abs(current_sum - 1.0) > 0.01:
-        max_emotion = max(normalized, key=normalized.get)
-        normalized[max_emotion] = round(normalized[max_emotion] + (1.0 - current_sum), 4)
-    
-    return normalized
 
 VAD_STEP_KEYS = [
     "step1_lexical_grounding",
@@ -56,9 +34,182 @@ VAD_EMOTION_MAP = {
 POSITIVE_WORDS = ["happy", "joy", "great", "good", "love", "excellent", "wonderful", "开心", "高兴", "快乐", "喜欢", "棒", "好"]
 NEGATIVE_WORDS = ["sad", "angry", "fear", "hate", "bad", "terrible", "awful", "痛苦", "难过", "伤心", "生气", "害怕", "讨厌", "糟"]
 
+NEGATION_WORDS = ["不", "没", "非", "无", "别", "并未", "绝非", "何曾", "不再", "毫无", "从未", "别再", "未曾"]
+SARCASM_KEYWORDS = ["比XX还专业", "简直是个笑话", "谁买谁后悔", "绝了", "可真行", "简直绝了"]
+
 
 def clamp(v: float) -> float:
     return max(0.0, min(1.0, float(v)))
+
+
+def parse_json_safely(raw_str: str) -> Optional[dict]:
+    """安全解析JSON，兼容json5小瑕疵，极端失败返回None"""
+    raw_str = raw_str.strip()
+    if raw_str.startswith("```json"):
+        raw_str = raw_str[7:]
+    if raw_str.startswith("```"):
+        raw_str = raw_str[3:]
+    if raw_str.endswith("```"):
+        raw_str = raw_str[:-3]
+    raw_str = raw_str.strip()
+    
+    try:
+        return json.loads(raw_str)
+    except json.JSONDecodeError:
+        pass
+    
+    if json5:
+        try:
+            return json5.loads(raw_str)
+        except Exception:
+            pass
+    
+    return None
+
+
+def force_no_evidence_zero_score(data: dict) -> dict:
+    """无evidence的情绪强制0分"""
+    if "cot_reasoning_chain" not in data or "step1_lexical_grounding" not in data["cot_reasoning_chain"]:
+        return data
+    
+    evidence = data["cot_reasoning_chain"]["step1_lexical_grounding"].get("evidence", {})
+    raw_scores = data.get("raw_intensity_scores", {})
+    
+    for emotion in EMOTIONS:
+        emo_evidence = evidence.get(emotion, [])
+        if isinstance(emo_evidence, list) and len(emo_evidence) == 0:
+            if raw_scores.get(emotion, 0.0) != 0.00:
+                raw_scores[emotion] = 0.00
+    
+    data["raw_intensity_scores"] = raw_scores
+    return data
+
+
+def force_neutral_objective_text(data: dict) -> dict:
+    """纯客观陈述兜底：cues全为neutral/空 + evidence全为neutral/空 → neutral=1.00，其余=0.00"""
+    if "cot_reasoning_chain" not in data or "step1_lexical_grounding" not in data["cot_reasoning_chain"]:
+        return data
+    
+    step1 = data["cot_reasoning_chain"]["step1_lexical_grounding"]
+    cues = step1.get("cues", {})
+    evidence = step1.get("evidence", {})
+    
+    is_cues_neutral = (
+        not cues.get("strong_emotion", []) and
+        not cues.get("sarcasm", []) and
+        not cues.get("weak_emotion", [])
+    )
+    is_evidence_neutral = (
+        not evidence.get("happy", []) and
+        not evidence.get("sad", []) and
+        not evidence.get("angry", []) and
+        not evidence.get("fear", []) and
+        not evidence.get("surprise", [])
+    )
+    
+    if is_cues_neutral and is_evidence_neutral:
+        data["raw_intensity_scores"] = {
+            "happy": 0.00,
+            "sad": 0.00,
+            "angry": 0.00,
+            "fear": 0.00,
+            "surprise": 0.00,
+            "neutral": 1.00
+        }
+        data["primary_emotion"] = "neutral"
+        data["vad_dimensions"] = {
+            "valence": 0.50,
+            "arousal": 0.20,
+            "dominance": 0.50
+        }
+    
+    return data
+
+
+def force_valid_score_format(data: dict) -> dict:
+    """强制2位小数，禁止科学计数法"""
+    if "raw_intensity_scores" in data:
+        for emotion in EMOTIONS:
+            if emotion in data["raw_intensity_scores"]:
+                data["raw_intensity_scores"][emotion] = round(float(data["raw_intensity_scores"][emotion]), 2)
+    
+    if "vad_dimensions" in data:
+        vad = data["vad_dimensions"]
+        for key in ["valence", "arousal", "dominance"]:
+            if key in vad:
+                vad[key] = round(float(vad[key]), 2)
+        data["vad_dimensions"] = vad
+    
+    return data
+
+
+def force_primary_emotion_max(data: dict) -> dict:
+    """primary_emotion必须为最高分情绪"""
+    if "raw_intensity_scores" not in data or "primary_emotion" not in data:
+        return data
+    
+    raw_scores = data["raw_intensity_scores"]
+    if not raw_scores:
+        return data
+    
+    max_score = max(raw_scores.values())
+    max_emotions = [e for e, v in raw_scores.items() if abs(v - max_score) < 0.001]
+    
+    if data["primary_emotion"] not in max_emotions:
+        data["primary_emotion"] = max_emotions[0] if max_emotions else "neutral"
+    
+    return data
+
+
+def force_clamp_scores(data: dict) -> dict:
+    """分数截断到0-1范围"""
+    if "raw_intensity_scores" in data:
+        for emotion in EMOTIONS:
+            if emotion in data["raw_intensity_scores"]:
+                data["raw_intensity_scores"][emotion] = clamp(data["raw_intensity_scores"][emotion])
+    
+    if "vad_dimensions" in data:
+        vad = data["vad_dimensions"]
+        for key in ["valence", "arousal", "dominance"]:
+            if key in vad:
+                vad[key] = clamp(vad[key])
+        data["vad_dimensions"] = vad
+    
+    return data
+
+
+def force_all_corrections(data: dict, risk_warning: str = "") -> dict:
+    """执行所有强制修正"""
+    data = force_clamp_scores(data)
+    data = force_no_evidence_zero_score(data)
+    data = force_neutral_objective_text(data)
+    data = force_valid_score_format(data)
+    data = force_primary_emotion_max(data)
+    if risk_warning:
+        data["risk_warning"] = risk_warning
+    return data
+
+
+def normalize_emotion_scores(raw_scores: Dict[str, float]) -> Dict[str, float]:
+    """将raw_intensity_scores归一化为target_scores（概率分布）"""
+    if not raw_scores or not any(raw_scores.values()):
+        return {e: 1.0 / len(EMOTIONS) for e in EMOTIONS}
+    
+    total = sum(max(0.0, float(raw_scores.get(e, 0.0))) for e in EMOTIONS)
+    if total <= 0:
+        return {e: 1.0 / len(EMOTIONS) for e in EMOTIONS}
+    
+    normalized = {}
+    for e in EMOTIONS:
+        raw_val = max(0.0, float(raw_scores.get(e, 0.0)))
+        normalized[e] = round(raw_val / total, 4)
+    
+    current_sum = sum(normalized.values())
+    if abs(current_sum - 1.0) > 0.01:
+        max_emotion = max(normalized, key=normalized.get)
+        normalized[max_emotion] = round(normalized[max_emotion] + (1.0 - current_sum), 4)
+    
+    return normalized
 
 
 def calculate_statistical_confidence(scores: Dict[str, float]) -> float:
@@ -82,25 +233,15 @@ def calculate_vad_consistency(vad_dimensions: Optional[Dict], target_scores: Dic
     if not vad_dimensions:
         return 0.5
     
-    valence = vad_dimensions.get("valence", "neutral")
-    if isinstance(valence, str):
-        if valence == "positive":
-            expected_high = ["happy"]
-            expected_low = ["sad", "angry", "fear"]
-        elif valence == "negative":
-            expected_high = ["sad", "angry", "fear"]
-            expected_low = ["happy"]
-        else:
-            return 0.5
+    valence = vad_dimensions.get("valence", 0.5)
+    if valence > 0.6:
+        expected_high = ["happy"]
+        expected_low = ["sad", "angry", "fear"]
+    elif valence < 0.4:
+        expected_high = ["sad", "angry", "fear"]
+        expected_low = ["happy"]
     else:
-        if valence > 0.6:
-            expected_high = ["happy"]
-            expected_low = ["sad", "angry", "fear"]
-        elif valence < 0.4:
-            expected_high = ["sad", "angry", "fear"]
-            expected_low = ["happy"]
-        else:
-            return 0.5
+        return 0.5
     
     max_high = max(target_scores.get(e, 0.0) for e in expected_high) if expected_high else 0.0
     max_low = max(target_scores.get(e, 0.0) for e in expected_low) if expected_low else 0.0
@@ -192,7 +333,10 @@ def _parse_json_object(obj: dict, result: Dict[str, Any]) -> None:
         
         result["target_scores"] = normalize_emotion_scores(result["scores"])
     
-    cot = obj.get("cot_reasoning_chain_v2", {})
+    cot = obj.get("cot_reasoning_chain", {})
+    if not cot:
+        cot = obj.get("cot_reasoning_chain_v2", {})
+    
     if isinstance(cot, dict):
         for key in VAD_STEP_KEYS:
             val = cot.get(key, "")
@@ -296,58 +440,39 @@ def format_inference_result(
     }
 
 
-NEGATION_WORDS = ["不", "没", "非", "无", "别", "并未", "绝非", "何曾", "不再", "毫无", "从未", "别再", "未曾"]
-SARCASM_KEYWORDS = ["比XX还专业", "简直是个笑话", "谁买谁后悔", "绝了", "可真行", "简直绝了"]
-
-
-def validate_emotion_output(model_output: str, input_text: str) -> tuple[bool, dict, str]:
-    """
-    校验模型输出是否符合规则
-    :param model_output: 模型返回的原始输出字符串
-    :param input_text: 原始输入文本
-    :return: (校验是否通过, 解析后的JSON, 错误信息)
-    """
-    output_data = None
+def validate_emotion_output(model_output: str, input_text: str) -> Tuple[bool, dict, str]:
+    """校验模型输出是否符合规则"""
+    output_data = parse_json_safely(model_output)
+    if output_data is None:
+        return (False, {}, "JSON_PARSE_ERROR: JSON格式解析失败")
     
-    # 1. 格式校验：提取JSON并解析
-    try:
-        json_str = model_output
-        if "```json" in model_output:
-            json_str = model_output.split("```json")[1].split("```")[0].strip()
-        elif "```" in model_output:
-            json_str = model_output.split("```")[1].split("```")[0].strip()
-        
-        s, e = json_str.find("{"), json_str.rfind("}")
-        if s != -1 and e != -1 and e > s:
-            json_str = json_str[s: e + 1]
-        
-        output_data = json.loads(json_str)
-    except Exception as e:
-        return False, {}, f"JSON格式解析失败：{str(e)}"
-
-    # 2. 必填字段校验
-    required_fields = ["cot_reasoning_chain_v2", "raw_intensity_scores", "primary_emotion", "vad_dimensions", "emotion_cause", "uncertainty_level"]
-    for field in required_fields:
-        if field not in output_data:
-            return False, output_data, f"缺失必填字段：{field}"
-
-    # 3. VAD数值范围校验
+    required_top_fields = ["cot_reasoning_chain", "raw_intensity_scores", "primary_emotion", "vad_dimensions", "emotion_cause", "uncertainty_level"]
+    missing_fields = [f for f in required_top_fields if f not in output_data]
+    if missing_fields:
+        return (False, output_data, f"MISSING_FIELD: {', '.join(missing_fields)}")
+    
     vad = output_data.get("vad_dimensions", {})
+    out_of_range_vad = []
     for k, v in vad.items():
         if not (0.00 <= float(v) <= 1.00):
-            return False, output_data, f"VAD数值越界：{k}={v}，必须在0.00-1.00之间"
-
-    # 4. raw_intensity_scores校验
+            out_of_range_vad.append(f"{k}={v}")
+    if out_of_range_vad:
+        return (False, output_data, f"SCORE_OUT_OF_RANGE: VAD {', '.join(out_of_range_vad)}")
+    
     raw_scores = output_data.get("raw_intensity_scores", {})
-    required_emotions = ["angry", "fear", "happy", "neutral", "sad", "surprise"]
-    for emo in required_emotions:
+    out_of_range_scores = []
+    for emo in EMOTIONS:
         if emo not in raw_scores:
-            return False, output_data, f"raw_intensity_scores缺失情绪：{emo}"
+            return (False, output_data, f"MISSING_FIELD: raw_intensity_scores.{emo}")
         if not (0.00 <= float(raw_scores[emo]) <= 1.00):
-            return False, output_data, f"情绪分数越界：{emo}={raw_scores[emo]}"
-
-    # 4.1 无证据情绪分数校验（raw_intensity_scores无总和限制）
-    cot_cot = output_data.get("cot_reasoning_chain_v2", {})
+            out_of_range_scores.append(f"{emo}={raw_scores[emo]}")
+    if out_of_range_scores:
+        return (False, output_data, f"SCORE_OUT_OF_RANGE: {', '.join(out_of_range_scores)}")
+    
+    cot_cot = output_data.get("cot_reasoning_chain", {})
+    if not cot_cot:
+        cot_cot = output_data.get("cot_reasoning_chain_v2", {})
+    
     evidence = {}
     cues_obj = {}
     if isinstance(cot_cot, dict):
@@ -356,157 +481,154 @@ def validate_emotion_output(model_output: str, input_text: str) -> tuple[bool, d
             evidence = step1.get("evidence", {})
             cues_obj = step1.get("cues", {})
     
-    # 4.2 step1 cues结构校验
     required_cue_keys = ["strong_emotion", "sarcasm", "weak_emotion", "neutral"]
     if isinstance(cues_obj, dict):
         for key in required_cue_keys:
             if key not in cues_obj:
-                return False, output_data, f"cues缺少必填key：{key}，必须包含4个固定key：strong_emotion、sarcasm、weak_emotion、neutral"
-            if not isinstance(cues_obj[key], list):
-                return False, output_data, f"cues.{key}必须为数组类型"
-    elif cues_obj:
-        return False, output_data, "cues必须是对象类型，包含4个固定key：strong_emotion、sarcasm、weak_emotion、neutral"
+                return (False, output_data, f"MISSING_FIELD: cues.{key}")
     else:
-        return False, output_data, "cues不能为空，必须包含4个固定key：strong_emotion、sarcasm、weak_emotion、neutral"
+        return (False, output_data, "MISSING_FIELD: cues结构异常")
     
+    no_evidence_scores = []
     if isinstance(evidence, dict):
-        for emo in required_emotions:
+        for emo in EMOTIONS:
             emo_evidence = evidence.get(emo, [])
             if isinstance(emo_evidence, list) and len(emo_evidence) == 0:
-                if float(raw_scores[emo]) > 0.03:
-                    return False, output_data, f"无证据情绪分数超标：{emo}={raw_scores[emo]}，无证据时不得超过0.03"
-            if emo == "happy":
-                if isinstance(emo_evidence, list) and len(emo_evidence) == 0:
-                    if float(raw_scores[emo]) != 0.00:
-                        return False, output_data, f"happy无证据时必须为0.00，当前为{raw_scores[emo]}"
-
-    # 5. 主情绪校验（基于raw_intensity_scores）
-    max_score = max(float(raw_scores[emo]) for emo in required_emotions)
+                if float(raw_scores.get(emo, 0.0)) != 0.00:
+                    no_evidence_scores.append(f"{emo}={raw_scores.get(emo)}")
+    
+    if no_evidence_scores:
+        return (False, output_data, f"NO_EVIDENCE_SCORE: {', '.join(no_evidence_scores)}")
+    
+    max_score = max(float(raw_scores[emo]) for emo in EMOTIONS)
     max_emos = [emo for emo, v in raw_scores.items() if abs(float(v) - max_score) < 0.001]
-    if output_data.get("primary_emotion") not in max_emos:
-        return False, output_data, f"主情绪错误：primary_emotion={output_data['primary_emotion']}，但最高分情绪为{max_emos}"
-
-    # 6. 否定词漏检兜底校验
+    primary_emo = output_data.get("primary_emotion", "")
+    if primary_emo not in max_emos:
+        return (False, output_data, f"PRIMARY_EMOTION_ERROR: 当前{primary_emo}应为{max_emos[0] if max_emos else 'unknown'}")
+    
     has_negation = any(word in input_text for word in NEGATION_WORDS)
-    negation_found = False
+    has_sarcasm = any(keyword in input_text for keyword in SARCASM_KEYWORDS)
+    
     if isinstance(cot_cot, dict):
         step3 = cot_cot.get("step3_negation_detection", {})
         if isinstance(step3, dict):
             negation_found = step3.get("negations_found", False)
-    if has_negation and not negation_found:
-        return False, output_data, "否定词漏检：原文包含否定词，但negations_found标记为false"
-
-    # 7. 反讽漏检兜底校验
-    has_sarcasm = any(keyword in input_text for keyword in SARCASM_KEYWORDS)
-    sarcasm_found = False
-    if isinstance(cot_cot, dict):
-        step3 = cot_cot.get("step3_negation_detection", {})
-        if isinstance(step3, dict):
             sarcasm_found = step3.get("sarcasm_detected", False)
-    if has_sarcasm and not sarcasm_found:
-        return False, output_data, "反讽漏检：原文包含反讽特征，但sarcasm_detected标记为false"
-
-    # 8. 模型step5自检二次校验：防止模型撒保证书
-    step5_data = output_data.get("cot_reasoning_chain_v2", {}).get("step5_consistency_check", {})
+            
+            if has_negation and not negation_found:
+                return (False, output_data, "STEP3_NEGATION_MISSED: 否定词漏检")
+            
+            if has_sarcasm and not sarcasm_found:
+                return (False, output_data, "STEP3_SARCASM_MISSED: 反讽漏检")
+            
+            if (negation_found or sarcasm_found):
+                adjusted_scores = step3.get("adjusted_scores", {})
+                step7 = cot_cot.get("step7_faithful_synthesis", {})
+                adjustment_log = step7.get("adjustment_log", "") if isinstance(step7, dict) else ""
+                
+                if not adjusted_scores and adjustment_log == "":
+                    return (False, output_data, "STEP3_NO_ADJUSTMENT: 检测到否定/反讽但无adjustment记录")
+    
+    step5_data = cot_cot.get("step5_consistency_check", {}) if isinstance(cot_cot, dict) else {}
     if isinstance(step5_data, dict):
         check_items = step5_data.get("check_items", [])
         check_text = " ".join(check_items) if isinstance(check_items, list) else str(check_items)
-        if "无证据的情绪分数未超过0.03" in check_text or "无证据的情绪分数均≤0.03" in check_text:
-            for emo in ["sad", "angry", "fear", "surprise", "neutral"]:
+        
+        if "无证据" in check_text and "=0.00" in check_text:
+            for emo in EMOTIONS:
                 emo_evidence = evidence.get(emo, []) if isinstance(evidence, dict) else []
                 if isinstance(emo_evidence, list) and len(emo_evidence) == 0:
-                    if float(raw_scores.get(emo, 0.0)) > 0.03:
-                        return False, output_data, f"step5自检撒谎：模型声称'{emo}'无证据≤0.03，但实际raw_scores.{emo}={raw_scores.get(emo)}，违反规则"
-
-    # 所有校验通过
-    return True, output_data, "校验通过，输出完全符合规则"
-
-
-def force_happy_redline_rule(output_data: dict) -> dict:
-    """
-    红线规则强制执行：所有无证据情绪的分数规则，代码层面彻底锁死
-    - happy无证据时必须为0.00（最高优先级）
-    - 其他情绪(sad/angry/fear/surprise/neutral)无证据时必须<=0.03
-    :param output_data: 模型解析后的完整输出JSON对象
-    :return: 100%合规的修正后输出对象
-    """
-    try:
-        step1 = output_data.get("cot_reasoning_chain_v2", {}).get("step1_lexical_grounding", {})
-        evidence = step1.get("evidence", {})
-        raw_scores = output_data.get("raw_intensity_scores", {})
-        step5 = output_data.get("cot_reasoning_chain_v2", {}).get("step5_consistency_check", {})
-        step7 = output_data.get("cot_reasoning_chain_v2", {}).get("step7_faithful_synthesis", {})
-        
-        adjustment_records = []
-        
-        # Happy: 无证据时必须为0.00（最高优先级红线）
-        happy_evidence = evidence.get("happy", [])
-        if isinstance(happy_evidence, list) and len(happy_evidence) == 0:
-            original_happy = raw_scores.get("happy", 0.0)
-            if original_happy != 0.00:
-                raw_scores["happy"] = 0.00
-                adjustment_records.append(f"happy: {original_happy:.2f}→0.00(红线规则：happy无证据必须为0.00)")
-        
-        # 其他情绪: 无证据时必须<=0.03
-        other_emotions = ["sad", "angry", "fear", "surprise", "neutral"]
-        for emo in other_emotions:
-            emo_evidence = evidence.get(emo, [])
-            if isinstance(emo_evidence, list) and len(emo_evidence) == 0:
-                original_score = raw_scores.get(emo, 0.0)
-                if original_score > 0.03:
-                    raw_scores[emo] = 0.03
-                    adjustment_records.append(f"{emo}: {original_score:.2f}→0.03(规则修正：{emo}无证据不得超过0.03)")
-        
-        if adjustment_records:
-            output_data["raw_intensity_scores"] = raw_scores
-            
-            adjust_log = "；".join(adjustment_records)
-            if step7.get("adjustment_log") == "无分数调整":
-                step7["adjustment_log"] = adjust_log
-            else:
-                step7["adjustment_log"] = step7.get("adjustment_log", "") + "，" + adjust_log
-            output_data["cot_reasoning_chain_v2"]["step7_faithful_synthesis"] = step7
-            
-            check_items = step5.get("check_items", [])
-            rule5_correct = f"5. 分数与evidence对应：无证据情绪均已修正为合规分数：{adjust_log}"
-            check_updated = False
-            for i in range(len(check_items)):
-                if "无证据的情绪分数" in check_items[i] or "证据一一对应" in check_items[i]:
-                    check_items[i] = rule5_correct
-                    check_updated = True
-                    break
-            if not check_updated:
-                check_items.append(rule5_correct)
-            
-            if "最高优先级红线规则" not in " ".join(check_items):
-                check_items.append("8. 红线规则校验：所有无证据情绪分数均已强制修正为合规值，符合规则")
-            
-            step5["check_items"] = check_items
-            step5["vad_consistent"] = True
-            output_data["cot_reasoning_chain_v2"]["step5_consistency_check"] = step5
-    except Exception:
-        pass
+                    if float(raw_scores.get(emo, 0.0)) != 0.00:
+                        return (False, output_data, f"STEP5_LIE: 声称{emo}无证据=0.00但实际={raw_scores.get(emo)}")
     
-    return output_data
+    return (True, output_data, "VALID")
 
 
 def get_retry_prompt(original_prompt: str, error_msg: str) -> str:
-    """
-    生成带错误信息注入的重试prompt，包含绝对强制修正指令
-    """
-    return f"""【绝对强制修正指令，必须100%执行，无任何例外】
-上一次输出校验失败，失败原因：{error_msg}
-你必须严格执行以下所有操作，禁止任何变通：
-【红线规则（违反直接无效）】
-1. happy无证据时必须为0.00，0.01、0.03等任何非零数值都属于严重违规
-2. sad/angry/fear/surprise/neutral无证据时不得超过0.03
-【修正操作】
-3. 逐个检查evidence数组为空的情绪，修正其分数至合规值
-4. 修正step5_consistency_check的check_items第5条，如实填写各情绪的修正情况
-5. 修正step7的adjustment_log，记录所有分数调整
-6. 其他推理内容保持不变
-【禁止事项】
-7. 禁止声称"无证据情绪分数≤0.03"同时输出超标分数
-8. 禁止在step5中撒谎，必须如实反映实际分数
-
-输入文本：{original_prompt}"""
+    """分场景精准纠错重试提示词"""
+    if error_msg.startswith("JSON_PARSE_ERROR"):
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. 输出标准合法JSON，禁止多余逗号、单引号、尾随换行
+【错误说明】
+上一次输出JSON格式错误，无法解析。
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("MISSING_FIELD:"):
+        missing = error_msg.replace("MISSING_FIELD:", "").strip()
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. 必须包含字段：cot_reasoning_chain, raw_intensity_scores, primary_emotion, vad_dimensions, emotion_cause, uncertainty_level
+【错误说明】
+上一次输出缺少必填字段：{missing}
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("SCORE_OUT_OF_RANGE:"):
+        items = error_msg.replace("SCORE_OUT_OF_RANGE:", "").strip()
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. 所有VAD值、情绪分数必须在0.00-1.00之间，保留2位小数
+【错误说明】
+上一次输出存在分数越界：{items}
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("NO_EVIDENCE_SCORE:"):
+        items = error_msg.replace("NO_EVIDENCE_SCORE:", "").strip()
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. 无原文证据的情绪，分数强制为0.00
+【错误说明】
+上一次输出中，{items}，违反无证据=0分规则
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("PRIMARY_EMOTION_ERROR:"):
+        current = error_msg.split("当前")[1].split("应为")[0].strip() if "当前" in error_msg else "unknown"
+        highest = error_msg.split("应为")[1].strip() if "应为" in error_msg else "unknown"
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. primary_emotion必须是raw_intensity_scores中的最高分情绪
+【错误说明】
+上一次输出的primary_emotion为{current}，但最高分是{highest}
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("STEP5_LIE:"):
+        items = error_msg.replace("STEP5_LIE:", "").strip()
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. 所有推理必须100%来自原文，严格遵守无evidence=0分规则
+【错误说明】
+上一次输出的step5自查声称合规，但实际存在违规：{items}
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("STEP3_NEGATION_MISSED") or error_msg.startswith("STEP3_SARCASM_MISSED"):
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. step3必须检测否定词和反讽，检测到时adjusted_scores必须有记录
+【错误说明】
+上一次输出漏检了否定词或反讽
+【待分析文本】
+{original_prompt}"""
+    
+    elif error_msg.startswith("STEP3_NO_ADJUSTMENT"):
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. 检测到否定词或反讽时，adjusted_scores必须有对应调整记录
+【错误说明】
+上一次输出检测到否定/反讽但adjusted_scores为空
+【待分析文本】
+{original_prompt}"""
+    
+    else:
+        return f"""【绝对规则】
+1. 仅输出```json代码块，块外无任何文本
+2. 所有分数0.00-1.00，无evidence=0分
+【错误说明】
+上一次输出校验失败：{error_msg}
+【待分析文本】
+{original_prompt}"""
