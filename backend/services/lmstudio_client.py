@@ -224,6 +224,11 @@ step1_lexical_grounding 词汇证据锚定
 - 输出规范：
   - cues：包含4个固定key（strong_emotion/sarcasm/weak_emotion/neutral），value为对应线索数组
   - evidence：固定key为["happy","sad","angry","fear","surprise","neutral"]，value为原文完整分句数组
+- 【证据补全规则】
+  - step2发现step1漏识别的情绪时，必须回溯补全step1：
+    - 补全对应情绪的evidence（原文分句）
+    - 补全对应情绪的cues（线索词）
+  - 补全操作是强制必须项，不可跳过
 
 step2_dimensional_analysis VAD维度分析
 基于step1证据完成情感量化，输出字段顺序固定为：valence → arousal → dominance → initial_scores → emotion_mapping。
@@ -235,8 +240,17 @@ step2_dimensional_analysis VAD维度分析
   - 唤醒度：高唤醒≥0.70 / 中唤醒0.40-0.69 / 低唤醒≤0.39
   - 支配度：高支配≥0.70 / 中支配0.40-0.69 / 低支配≤0.39
 - initial_scores：基于step1 evidence从文本语义推导的各情绪初始强度分（仅记录非零分情绪），供step3调整时作为原始基准
-- ⚠️ 强制约束：initial_scores中只能出现step1 evidence中非空的情绪；step1 evidence为空数组的情绪，initial_scores中必须为0.00或直接省略
 - emotion_mapping格式：「效价标签+唤醒度标签+支配度标签 → 指向XX情绪」，情绪名称必须与固定映射规则一致
+- 【语义推导规则】（强制执行，缺一不可）
+  ① 触发条件：仅有原文分句支撑的隐含情绪才能触发语义推导
+  ② 执行时机：仅在step2环节执行，step3及之后禁止
+  ③ 推导边界：仅用于情绪强度量化、VAD维度判定、step1证据补全
+  ④ 强制操作：语义推导时，必须同步补全step1对应情绪的evidence（原文分句）+ cues（线索词）
+  ⑤ 绝对禁止：无原文分句支撑的情绪推导；step4及之后新增情绪
+- 【显式情绪词漏识别处理】
+  - step1漏识别的显式情绪词（如"害怕"），不能直接在step2给分
+  - 必须先在step1补全该情绪的evidence（原文分句）+ cues（线索词）
+  - 再基于补全后的step1，在step2的initial_scores中给出初始分
 
 step3_negation_detection 否定与反讽检测
 按顺序执行：

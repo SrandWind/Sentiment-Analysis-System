@@ -601,10 +601,11 @@ def get_retry_prompt(original_prompt: str, error_msg: str) -> str:
         items = error_msg.replace("STEP2_INITIAL_NO_EVIDENCE:", "").strip()
         return f"""【绝对规则】
 1. 仅输出```json代码块，块外无任何文本
-2. step2.initial_scores中只能出现step1 evidence中非空的情绪
-3. step1 evidence为空数组的情绪，initial_scores中必须为0.00或直接省略
+2. 非零分情绪必须在step1有对应evidence（原文分句）
+3. step2语义推导发现的新情绪，必须同步补全step1的evidence（原文分句）+ cues（线索词）
+4. step1补全后才能在step2.initial_scores中给分
 【错误说明】
-上一次输出中，{items}，在step1无evidence
+上一次输出中，{items}，在step1无对应evidence
 【待分析文本】
 {original_prompt}"""
     
