@@ -69,7 +69,7 @@ class Settings(BaseSettings):
     presence_penalty: float = 0.0
     
     # Timeout settings
-    timeout: float = 180.0
+    timeout: float = 600.0
     
     # Default inference preset
     inference_preset: str = "standard"

@@ -42,7 +42,7 @@ class LMStudioClient:
         self,
         base_url: Optional[str] = None,
         model: Optional[str] = None,
-        timeout: float = 120.0
+        timeout: float = 600.0
     ):
         self.base_url = (base_url or settings.lmstudio_base_url).rstrip("/")
         self.model = model or settings.lmstudio_model
@@ -222,6 +222,9 @@ step1_lexical_grounding 词汇证据锚定
 - evidence的key固定为["happy","sad","angry","fear","surprise","neutral"]
 - sarcasm线索的原文分句根据其真实情绪语义归入对应情绪key（通常为angry或sad），不单独设key
 - 无情感倾向的客观陈述放入neutral；无对应情绪的evidence为空数组
+- 原文中出现的客观事实陈述（人物行为/医疗结论/事件经过等）
+  必须录入 evidence.neutral，即使与情绪无直接关联；
+  这是 step4 情绪归因引用事实的唯一合法来源
 
 【step1_precheck：执行词汇提取后，输出cues/evidence之前，必须完成此步骤】
 逐条列出所有候选情绪关键词（含隐含词），格式如下：
@@ -249,8 +252,9 @@ step2_dimensional_analysis VAD维度分析
   - 唤醒度：高唤醒≥0.70 / 中唤醒0.40-0.69 / 低唤醒≤0.39
   - 支配度：高支配≥0.70 / 中支配0.40-0.69 / 低支配≤0.39
 
-- initial_scores：基于step1 evidence从文本语义量化的各情绪初始强度分（仅记录非零分情绪），供step3调整时作为原始基准
+- initial_scores：基于step1 evidence从文本语义量化的各情绪初始强度分，供step3调整时作为原始基准;有 step1 evidence 的情绪必须在 initial_scores 中出现：给出非零分：说明强度量化依据;给出零分：必须注明"evidence存在但VAD不符/强度不足"及具体原因;禁止在 initial_scores 中直接省略有 evidence 的情绪
 - emotion_mapping格式：「效价标签+唤醒度标签+支配度标签 → 指向XX情绪」，情绪名称必须与固定映射规则一致，且必须与最终primary_emotion完全相同
+
 
 【语义推导规则】（强制执行，缺一不可）
 触发条件：原文无显式情绪词，但分句语义明确指向某种情绪时，方可触发语义推导。
