@@ -128,6 +128,8 @@ const parseStep1LexicalGrounding = (data: any, primaryEmotion: string): ParsedCo
 
   const cuesObj = data.cues || {}
   const evidence = data.evidence || {}
+  const step1Precheck = data.step1_precheck || []
+  const dualCheck = data.dual_check || {}
 
   const CUE_CATEGORIES = [
     { key: 'strong_emotion', label: '🔥 强情绪线索', color: '#ff4d4f', className: 'cue-tag-strong' },
@@ -155,10 +157,77 @@ const parseStep1LexicalGrounding = (data: any, primaryEmotion: string): ParsedCo
     ? cuesObj
     : { strong_emotion: Array.isArray(cuesObj) ? cuesObj : [] }
 
+  const renderPrecheck = () => {
+    if (!Array.isArray(step1Precheck) || step1Precheck.length === 0) return null
+    return (
+      <div className="cot-section">
+        <div className="cot-section-title">📋 候选情绪词筛查</div>
+        <div className="precheck-table">
+          <table className="precheck-table-inner">
+            <thead>
+              <tr>
+                <th>候选词</th>
+                <th>原文分句</th>
+                <th>文本支撑</th>
+                <th>归属情绪</th>
+              </tr>
+            </thead>
+            <tbody>
+              {step1Precheck.map((item: any, idx: number) => {
+                const hasSupport = item['文本支撑'] === '✓' || item.文本支撑 === true
+                return (
+                  <tr key={idx} className={hasSupport ? 'has-support' : 'no-support'}>
+                    <td><Tag color={hasSupport ? 'green' : 'red'}>{item['候选词'] || item.候选词}</Tag></td>
+                    <td className="precheck-sentence">{item['原文分句'] || item.原文分句}</td>
+                    <td>
+                      {hasSupport ? (
+                        <span style={{ color: '#52c41a', fontWeight: 'bold' }}>✓</span>
+                      ) : (
+                        <span style={{ color: '#ff4d4f', fontWeight: 'bold' }}>✗</span>
+                      )}
+                    </td>
+                    <td><Tag>{item['归属情绪key'] || item.归属情绪key || '-'}</Tag></td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
+  }
+
+  const renderDualCheck = () => {
+    if (!dualCheck || Object.keys(dualCheck).length === 0) return null
+    const checks = [
+      { key: 'evidence_to_cues', label: '正向约束（evidence→cues）' },
+      { key: 'cues_to_evidence', label: '反向约束（cues→evidence）' },
+      { key: 'sarcasm_归属', label: '反讽归属' },
+    ]
+    return (
+      <div className="cot-section">
+        <div className="cot-section-title">🔄 双向对应自检</div>
+        <div className="dual-check-list">
+          {checks.map(({ key, label }) => {
+            const value = dualCheck[key]
+            if (!value) return null
+            return (
+              <div key={key} className="dual-check-item">
+                <span className="dual-check-label">{label}：</span>
+                <span className="dual-check-value">{value}</span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
   return {
     type: 'step1',
     content: (
       <div className="cot-step1-content">
+        {renderPrecheck()}
         <div className="cot-section">
           <div className="cot-section-title">🔑 情感线索分类</div>
           <div className="cot-cues-grid">
@@ -206,6 +275,7 @@ const parseStep1LexicalGrounding = (data: any, primaryEmotion: string): ParsedCo
             )
           })}
         </div>
+        {renderDualCheck()}
       </div>
     )
   }
@@ -633,8 +703,8 @@ const Demo: React.FC = () => {
           // Try to parse partial JSON and update CoT for streaming display
           if (chunk.output) {
             const parsed = parseJsonSections(chunk.output)
-            if (parsed?.cot_reasoning_chain_v2) {
-              setStreamingCot(parsed.cot_reasoning_chain_v2)
+            if (parsed?.cot_reasoning_chain) {
+              setStreamingCot(parsed.cot_reasoning_chain)
             }
           }
 
@@ -690,7 +760,7 @@ const Demo: React.FC = () => {
               target_scores: finalParsed.target_scores || {},
               primary_emotion: primaryEmotion,
               confidence: 0,
-              cot: finalParsed.cot_reasoning_chain_v2 || {},
+              cot: finalParsed.cot_reasoning_chain || {},
               json_parse_ok: true,
               latency_ms: finalChunk?.latency_ms || streamingLatency,
               text: inputText,

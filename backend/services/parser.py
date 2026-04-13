@@ -43,14 +43,10 @@ def clamp(v: float) -> float:
 
 
 def parse_json_safely(raw_str: str) -> Optional[dict]:
-    """安全解析JSON，兼容json5小瑕疵，支持正则兜底提取，处理流式输出截断"""
-    import logging
-    logger = logging.getLogger(__name__)
-    
+    """安全解析JSON，兼容json5小瑕疵，支持正则兜底提取"""
     raw_str = raw_str.strip()
     
     if not raw_str:
-        logger.warning("[parse_json_safely] Empty input")
         return None
     
     content = raw_str
@@ -65,45 +61,34 @@ def parse_json_safely(raw_str: str) -> Optional[dict]:
             content = inner.strip()
     
     if not content:
-        logger.warning("[parse_json_safely] No content after extracting code blocks")
         return None
     
     try:
-        result = json.loads(content)
-        logger.info(f"[parse_json_safely] json.loads success, keys: {list(result.keys())[:5]}")
-        return result
-    except json.JSONDecodeError as e:
-        logger.warning(f"[parse_json_safely] json.loads failed: {e}")
+        return json.loads(content)
+    except json.JSONDecodeError:
+        pass
     
     if json5:
         try:
-            result = json5.loads(content)
-            logger.info(f"[parse_json_safely] json5.loads success")
-            return result
-        except Exception as e:
-            logger.warning(f"[parse_json_safely] json5.loads failed: {e}")
+            return json5.loads(content)
+        except Exception:
+            pass
     
     brace_start = content.find("{")
     brace_end = content.rfind("}")
     if brace_start != -1 and brace_end != -1 and brace_end > brace_start:
         json_candidate = content[brace_start:brace_end + 1]
-        logger.info(f"[parse_json_safely] Trying brace extract, length: {len(json_candidate)}")
         try:
-            result = json.loads(json_candidate)
-            logger.info("[parse_json_safely] json.loads success on brace extract")
-            return result
+            return json.loads(json_candidate)
         except json.JSONDecodeError:
             pass
         if json5:
             try:
-                result = json5.loads(json_candidate)
-                logger.info("[parse_json_safely] json5.loads success on brace extract")
-                return result
+                return json5.loads(json_candidate)
             except Exception:
                 pass
     
-    logger.warning(f"[parse_json_safely] All methods failed. Raw length: {len(raw_str)}, content length: {len(content)}")
-    logger.warning(f"[parse_json_safely] Content preview: {content[:200]}...")
+    return None
     return None
 
 
