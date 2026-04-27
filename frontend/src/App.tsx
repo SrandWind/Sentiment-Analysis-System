@@ -6,9 +6,10 @@ import {
   ExperimentOutlined,
   TableOutlined,
   BarChartOutlined,
-  BlockOutlined,
+  AppstoreOutlined,
   FileTextOutlined,
   HistoryOutlined,
+  LineChartOutlined,
 } from '@ant-design/icons'
 
 import Home from './pages/Home'
@@ -17,6 +18,7 @@ import Batch from './pages/Batch'
 import Metrics from './pages/Metrics'
 import Compare from './pages/Compare'
 import Docs from './pages/Docs'
+import WeiboAnalysis from './pages/WeiboAnalysis'
 import History from './pages/History'
 import ThemeToggle from './components/ThemeToggle'
 
@@ -27,10 +29,18 @@ const { Header, Content, Footer } = Layout
 
 const menuItems = [
   { key: '/', icon: <HomeOutlined />, label: '首页' },
+  { key: '/weibo-analysis', icon: <LineChartOutlined />, label: '微博用户分析' },
   { key: '/demo', icon: <ExperimentOutlined />, label: '在线演示' },
   { key: '/batch', icon: <TableOutlined />, label: '批量推理' },
-  { key: '/metrics', icon: <BarChartOutlined />, label: '模型评估' },
-  { key: '/compare', icon: <BlockOutlined />, label: '模型对比' },
+  {
+    key: 'model-center',
+    icon: <AppstoreOutlined />,
+    label: '模型中心',
+    children: [
+      { key: '/metrics', icon: <BarChartOutlined />, label: '模型评估' },
+      { key: '/compare', icon: <TableOutlined />, label: '模型对比' },
+    ]
+  },
   { key: '/history', icon: <HistoryOutlined />, label: '历史记录' },
   { key: '/docs', icon: <FileTextOutlined />, label: '技术文档' },
 ]
@@ -81,6 +91,7 @@ const AppContent: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path="/weibo-analysis" element={<WeiboAnalysis />} />
             <Route path="/batch" element={<Batch />} />
             <Route path="/history" element={<History />} />
             <Route path="/metrics" element={<Metrics />} />

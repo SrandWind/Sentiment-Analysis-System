@@ -124,16 +124,24 @@
   background: transparent;
   border: none;
   font-size: 15px;
-  max-width: 600px;
+  max-width: 850px;
 
   .ant-menu-item {
-    padding: 0 20px !important;
+    padding: 0 16px !important;
     height: 50px;
     line-height: 50px;
     border-radius: 10px;
     margin: 0 2px;
     transition: all $duration-fast $ease-smooth;
     position: relative;
+
+    // SubMenu title alignment
+    .ant-menu-submenu-title {
+      height: 50px;
+      line-height: 50px;
+      display: flex;
+      align-items: center;
+    }
 
     &::before {
       content: '';
@@ -186,6 +194,14 @@
     &:hover .ant-menu-item-icon {
       transform: translateY(-2px);
     }
+  }
+
+  // SubMenu vertical alignment
+  .ant-menu-submenu-title {
+    height: 50px !important;
+    line-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   // 浅色模式调整
@@ -455,15 +471,15 @@ body {
 
 @media (max-width: 1024px) {
   .header-inner {
-    padding: 0 20px;
+    padding: 0 16px;
   }
 
   .app-menu {
-    max-width: 400px;
+    max-width: 600px;
 
     .ant-menu-item {
-      padding: 0 12px !important;
-      font-size: 14px;
+      padding: 0 10px !important;
+      font-size: 13px;
     }
   }
 }
