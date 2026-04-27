@@ -1,0 +1,553 @@
+.weibo-analysis-page {
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .page-content {
+    padding: 0.5rem 0 1.5rem;
+  }
+
+  .page-header {
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 400ms ease-out both;
+  }
+
+  .week-selector {
+    animation: fadeInUp 400ms ease-out both;
+    animation-delay: 50ms;
+  }
+
+  // 侧边导航样式
+  .tab-sidebar {
+    width: 80px;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .tab-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    
+    &:hover {
+      background: rgba(83, 74, 183, 0.08);
+    }
+    
+    &.active {
+      background: rgba(83, 74, 183, 0.15);
+      
+      .tab-nav-text {
+        color: #534AB7;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .tab-nav-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .tab-nav-text {
+    font-size: 12px;
+    color: var(--theme-text-secondary);
+    transition: color 0.2s ease;
+  }
+
+  // 内容区域
+  .tab-content {
+    flex: 1;
+    padding: 0 16px;
+    overflow-x: hidden;
+  }
+
+  // 各层级样式
+  .summary-section,
+  .trend-section,
+  .detail-section,
+  .insight-section {
+    animation: fadeInUp 300ms ease-out both;
+  }
+
+  .layer-label {
+    animation: fadeInUp 400ms ease-out both;
+  }
+
+  .metrics-row {
+    margin-bottom: 1rem;
+    animation: fadeInUp 400ms ease-out both;
+    animation-delay: 100ms;
+  }
+
+  .radar-card {
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 400ms ease-out both;
+    animation-delay: 150ms;
+  }
+
+  .card-trend {
+    animation: fadeInUp 400ms ease-out both;
+    animation-delay: 200ms;
+  }
+
+  .card-detail {
+    animation: fadeInUp 400ms ease-out both;
+    animation-delay: 250ms;
+  }
+
+  .card-insight {
+    animation: fadeInUp 400ms ease-out both;
+    animation-delay: 300ms;
+  }
+
+  .page-title {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .page-subtitle {
+    color: var(--theme-text-secondary);
+    margin-bottom: 0 !important;
+  }
+
+  .week-selector {
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--theme-bg-secondary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  // ==========================================
+  // 层次标签增强（核心优化1）
+  // ==========================================
+  .layer-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1a1a18;
+    margin: 32px 0 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &::before {
+      content: '';
+      width: 4px;
+      height: 18px;
+      background: #534AB7;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #E0DFD9;
+      margin-left: 12px;
+    }
+  }
+
+  // ==========================================
+  // 层间距统一（核心优化2）
+  // ==========================================
+  .section {
+    margin-bottom: 40px;
+  }
+
+  // ==========================================
+  // 总览区突出（核心优化3）
+  // ==========================================
+  .summary-section {
+    background: rgba(82, 74, 183, 0.06);
+    padding: 24px 20px;
+    border-radius: 16px;
+    margin: 0 auto 40px;
+    max-width: 1100px;
+    box-sizing: border-box;
+  }
+
+  .metrics-row {
+    margin-bottom: 1rem;
+  }
+
+  .metric-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--theme-text-secondary);
+    margin: 0 0 4px;
+  }
+
+  .metric-value {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .metric-sub {
+    font-size: 10px;
+    color: var(--theme-text-tertiary);
+    margin: 4px 0 0;
+  }
+
+  // ==========================================
+  // 卡片统一样式（带阴影梯度）
+  // ==========================================
+  .card {
+    background: var(--theme-bg-card);
+    border: 1px solid var(--theme-border);
+    border-radius: 12px;
+    padding: 20px 18px;
+    margin-bottom: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--theme-text-primary);
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-num {
+    width: 20px;
+    height: 20px;
+    background: #EEEDFE;
+    color: #534AB7;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .radar-card {
+    margin-bottom: 16px;
+  }
+
+  .trend-row,
+  .detail-row,
+  .insight-row {
+    margin-bottom: 0;
+  }
+
+  .trend-row > .card,
+  .insight-row > .card {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  .detail-row > .card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  }
+
+  .heat-grid {
+    display: grid;
+    grid-template-columns: 40px repeat(7, 1fr);
+    gap: 3px;
+    font-size: 10px;
+  }
+
+  .heat-day {
+    color: var(--theme-text-tertiary);
+    text-align: center;
+    padding-bottom: 2px;
+  }
+
+  .heat-lbl {
+    color: var(--theme-text-tertiary);
+    text-align: right;
+    padding-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .heat-cell {
+    height: 17px;
+    border-radius: 2px;
+  }
+
+  .wheel-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 0.5px solid var(--theme-border);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .wdot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .wname {
+    font-size: 12px;
+    color: var(--theme-text-primary);
+    flex: 1;
+  }
+
+  .wtrack {
+    width: 72px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--theme-bg-tertiary);
+    overflow: hidden;
+  }
+
+  .wfill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .wcnt {
+    font-size: 11px;
+    color: var(--theme-text-tertiary);
+    width: 30px;
+    text-align: right;
+  }
+
+  .winterp {
+    font-size: 10px;
+    color: var(--theme-text-tertiary);
+    width: 60px;
+    text-align: right;
+  }
+
+  .word-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4px 0 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin: 2px;
+    cursor: default;
+    transition: opacity 0.15s;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  .post-row {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--theme-border);
+    transition: background-color 0.15s ease;
+    border-radius: 8px;
+    margin: 0 -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+  }
+
+  .post-main {
+    flex: 1;
+  }
+
+  .post-text {
+    font-size: 12px;
+    color: var(--theme-text-secondary);
+    line-height: 1.55;
+    margin: 0 0 4px;
+  }
+
+  .vmi {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .vmi-item {
+    flex: 1;
+  }
+
+  .vmi-lbl {
+    font-size: 9px;
+    color: var(--theme-text-tertiary);
+    margin-bottom: 1px;
+  }
+
+  .vmi-track {
+    height: 3px;
+    border-radius: 2px;
+    background: var(--theme-bg-tertiary);
+    overflow: hidden;
+  }
+
+  .vmi-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .confidence-label {
+    font-size: 9px;
+    color: var(--theme-text-tertiary);
+    align-self: center;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .post-meta {
+    font-size: 10px;
+    color: var(--theme-text-tertiary);
+    margin-top: 4px;
+  }
+
+  .badge-pos {
+    background: #EAF3DE;
+    color: #3B6D11;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .badge-neg {
+    background: #FCEBEB;
+    color: #A32D2D;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .badge-warn {
+    background: #FAEEDA;
+    color: #854F0B;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .rule-tag {
+    background: #FAEEDA;
+    color: #854F0B;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 10px;
+    margin-left: 4px;
+  }
+
+  // 锚点 tooltip
+  .anchor-tooltip {
+    background: var(--theme-bg-card);
+    border: 0.5px solid var(--theme-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 11px;
+    color: var(--theme-text-primary);
+    min-width: 180px;
+    max-width: 240px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+  }
+
+  // 散点图时间轨迹说明
+  .scatter-note {
+    font-size: 10px;
+    color: var(--theme-text-tertiary);
+    margin-top: 6px;
+  }
+
+  // 响应式适配
+  @media (max-width: 768px) {
+    .summary-section {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .layer-label {
+      font-size: 11px;
+      margin: 24px 0 12px;
+
+      &::before {
+        width: 3px;
+        height: 14px;
+      }
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .card {
+      padding: 16px 14px;
+    }
+
+    .metric-card {
+      padding: 14px 10px;
+    }
+
+    .metric-value {
+      font-size: 18px;
+    }
+  }
+}

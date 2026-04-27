@@ -1,0 +1,198 @@
+{
+  "user": {
+    "id": "user_12345",
+    "name": "微博用户_Alice",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
+    "period": "2024-01-15 ~ 2024-01-21"
+  },
+  "summary": {
+    "avg_valence": 0.56,
+    "avg_confidence": 0.80,
+    "volatility_index": "中高",
+    "volatility_std": 0.21,
+    "lowest_day": "周四",
+    "lowest_valence": 0.30,
+    "highest_day": "周六",
+    "highest_valence": 0.85,
+    "radar_summary": "该用户本周经历了工作压力和周末出游，情绪波动较大。周三项目deadline导致周四身体不适，周六出游心情愉悦，整体表达丰富"
+  },
+  "radar": {
+    "user": [72, 52, 80, 68, 62],
+    "platform_avg": [60, 65, 55, 55, 58],
+    "labels": ["积极性", "稳定性", "表达频率", "情绪强度", "社交互动"]
+  },
+  "vad_daily": [
+    {"day": "周一", "valence": 0.48, "v_q1": 0.32, "v_q3": 0.62, "v_std": 0.16, "arousal": 0.55, "a_q1": 0.40, "a_q3": 0.68, "a_std": 0.12, "dominance": 0.45, "d_q1": 0.34, "d_q3": 0.55, "d_std": 0.09, "is_anchor": false},
+    {"day": "周二", "valence": 0.55, "v_q1": 0.40, "v_q3": 0.68, "v_std": 0.15, "arousal": 0.52, "a_q1": 0.38, "a_q3": 0.65, "a_std": 0.11, "dominance": 0.50, "d_q1": 0.38, "d_q3": 0.60, "d_std": 0.09, "is_anchor": false},
+    {"day": "周三", "valence": 0.48, "v_q1": 0.35, "v_q3": 0.62, "v_std": 0.16, "arousal": 0.55, "a_q1": 0.42, "a_q3": 0.68, "a_std": 0.12, "dominance": 0.45, "d_q1": 0.35, "d_q3": 0.55, "d_std": 0.09, "is_anchor": false},
+    {"day": "周四", "valence": 0.30, "v_q1": 0.20, "v_q3": 0.42, "v_std": 0.18, "arousal": 0.70, "a_q1": 0.55, "a_q3": 0.82, "a_std": 0.16, "dominance": 0.25, "d_q1": 0.15, "d_q3": 0.38, "d_std": 0.10, "is_anchor": true},
+    {"day": "周五", "valence": 0.65, "v_q1": 0.50, "v_q3": 0.78, "v_std": 0.18, "arousal": 0.58, "a_q1": 0.45, "a_q3": 0.72, "a_std": 0.14, "dominance": 0.55, "d_q1": 0.42, "d_q3": 0.68, "d_std": 0.10, "is_anchor": false},
+    {"day": "周六", "valence": 0.85, "v_q1": 0.75, "v_q3": 0.90, "v_std": 0.18, "arousal": 0.70, "a_q1": 0.55, "a_q3": 0.82, "a_std": 0.15, "dominance": 0.75, "d_q1": 0.60, "d_q3": 0.85, "d_std": 0.12, "is_anchor": true},
+    {"day": "周日", "valence": 0.70, "v_q1": 0.50, "v_q3": 0.82, "v_std": 0.20, "arousal": 0.45, "a_q1": 0.35, "a_q3": 0.58, "a_std": 0.10, "dominance": 0.58, "d_q1": 0.45, "d_q3": 0.72, "d_std": 0.10, "is_anchor": false}
+  ],
+  "heatmap": {
+    "rows": ["早", "午", "夜"],
+    "cols": ["一", "二", "三", "四", "五", "六", "日"],
+    "values": [
+      [0.48, 0.55, 0.48, 0.30, 0.65, 0.85, 0.70],
+      [0.42, 0.50, 0.45, 0.35, 0.62, 0.80, 0.65],
+      [0.45, 0.42, 0.40, 0.22, 0.55, 0.75, 0.48]
+    ]
+  },
+  "emotion_wheel": [
+    {"name": "喜悦", "color": "#639922", "count": 13, "avg_intensity": 0.82},
+    {"name": "悲伤", "color": "#E24B4A", "count": 5, "avg_intensity": 0.30},
+    {"name": "期待", "color": "#1D9E75", "count": 6, "avg_intensity": 0.70},
+    {"name": "恐惧", "color": "#7F77DD", "count": 4, "avg_intensity": 0.45},
+    {"name": "愤怒", "color": "#BA7517", "count": 3, "avg_intensity": 0.52}
+  ],
+  "wordcloud": [
+    {"word": "开心", "size": 16, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["3", "6", "16", "24"]},
+    {"word": "deadline", "size": 14, "bg": "#FCEBEB", "color": "#A32D2D", "sentiment": "neg", "postIds": ["7", "9", "10", "16"]},
+    {"word": "焦虑", "size": 13, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["7", "9", "10", "12", "29", "30"]},
+    {"word": "出游", "size": 15, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["8", "18", "19"]},
+    {"word": "风景", "size": 14, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["21", "25", "26"]},
+    {"word": "累", "size": 12, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["11", "12", "17", "28"]},
+    {"word": "拍照", "size": 13, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["22", "25", "26"]},
+    {"word": "美食", "size": 12, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["23"]},
+    {"word": "绝绝子", "size": 11, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["21", "23"]},
+    {"word": "烦", "size": 10, "bg": "#FCEBEB", "color": "#A32D2D", "sentiment": "neg", "postIds": ["13"]},
+    {"word": "期待", "size": 12, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["8", "18"]},
+    {"word": "满足", "size": 11, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["24"]},
+    {"word": "不想", "size": 10, "bg": "#FCEBEB", "color": "#A32D2D", "sentiment": "neg", "postIds": ["1"]},
+    {"word": "谁懂啊", "size": 9, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["14"]},
+    {"word": "太美了", "size": 10, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["21", "26"]}
+  ],
+  "wordcloud_by_day": {
+    "0": [
+      {"word": "周一", "size": 2, "bg": "#F1EFE8", "color": "#5F5E5A", "sentiment": "neu", "postIds": ["1"]},
+      {"word": "工作", "size": 2, "bg": "#F1EFE8", "color": "#5F5E5A", "sentiment": "neu", "postIds": ["1"]},
+      {"word": "早起", "size": 2, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["2"]},
+      {"word": "困", "size": 2, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["2"]},
+      {"word": "摸鱼", "size": 2, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["4"]},
+      {"word": "开心", "size": 2, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["3"]}
+    ],
+    "1": [
+      {"word": "摸鱼", "size": 3, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["6"]},
+      {"word": "奶茶", "size": 2, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["6"]},
+      {"word": "期待", "size": 2, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["8"]},
+      {"word": "周三", "size": 2, "bg": "#F1EFE8", "color": "#5F5E5A", "sentiment": "neu", "postIds": ["7"]},
+      {"word": "deadline", "size": 2, "bg": "#FCEBEB", "color": "#A32D2D", "sentiment": "neg", "postIds": ["7"]}
+    ],
+    "2": [
+      {"word": "deadline", "size": 4, "bg": "#FCEBEB", "color": "#A32D2D", "sentiment": "neg", "postIds": ["7", "9", "10", "16"]},
+      {"word": "焦虑", "size": 3, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["7", "9", "10", "12"]},
+      {"word": "累", "size": 3, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["11", "12"]},
+      {"word": "烦", "size": 2, "bg": "#FCEBEB", "color": "#A32D2D", "sentiment": "neg", "postIds": ["13"]},
+      {"word": "崩溃", "size": 2, "bg": "#FCEBEB", "color": "#A32D2D", "sentiment": "neg", "postIds": ["12"]},
+      {"word": "谁懂啊", "size": 2, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["14"]}
+    ],
+    "3": [
+      {"word": "周四", "size": 2, "bg": "#F1EFE8", "color": "#5F5E5A", "sentiment": "neu", "postIds": ["15"]},
+      {"word": "恢复", "size": 2, "bg": "#F1EFE8", "color": "#5F5E5A", "sentiment": "neu", "postIds": ["16"]},
+      {"word": "摸鱼", "size": 2, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["15"]},
+      {"word": "开心", "size": 2, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["16"]},
+      {"word": "满足", "size": 2, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["16"]}
+    ],
+    "4": [
+      {"word": "周五", "size": 3, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["18"]},
+      {"word": "期待", "size": 3, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["8", "18"]},
+      {"word": "开心", "size": 2, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["18"]},
+      {"word": "出游", "size": 2, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["19"]},
+      {"word": "周末", "size": 2, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["18"]}
+    ],
+    "5": [
+      {"word": "出游", "size": 4, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["19", "21", "25"]},
+      {"word": "风景", "size": 3, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["21", "25", "26"]},
+      {"word": "拍照", "size": 3, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["22", "25", "26"]},
+      {"word": "太美了", "size": 3, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["21", "26"]},
+      {"word": "绝绝子", "size": 2, "bg": "#EEEDFE", "color": "#3C3489", "sentiment": "pos", "postIds": ["21", "23"]},
+      {"word": "美食", "size": 2, "bg": "#EAF3DE", "color": "#3B6D11", "sentiment": "pos", "postIds": ["23"]}
+    ],
+    "6": [
+      {"word": "周日", "size": 2, "bg": "#F1EFE8", "color": "#5F5E5A", "sentiment": "neu", "postIds": ["28"]},
+      {"word": "返程", "size": 2, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["28"]},
+      {"word": "累", "size": 2, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["28"]},
+      {"word": "周一", "size": 2, "bg": "#F1EFE8", "color": "#5F5E5A", "sentiment": "neu", "postIds": ["29", "30"]},
+      {"word": "焦虑", "size": 2, "bg": "#FAEEDA", "color": "#854F0B", "sentiment": "neg", "postIds": ["29", "30"]}
+    ]
+  },
+  "scatter_posts": [
+    {"x": 0.48, "y": 0.55, "d": 0.45, "label": "neutral", "day_idx": 0, "is_anchor": false, "is_outlier": false, "text": "新的一周开始了。。真的不想面对😔 周一综合症谁得谁懂。。又要当打工人了"},
+    {"x": 0.40, "y": 0.58, "d": 0.38, "label": "sad", "day_idx": 0, "is_anchor": false, "is_outlier": false, "text": "周一起不来。。闹钟又没叫醒我😅 连续第三天迟到了这个月全勤没了"},
+    {"x": 0.58, "y": 0.45, "d": 0.55, "label": "happy", "day_idx": 0, "is_anchor": false, "is_outlier": false, "text": "周一早上被夸了方案写得不错。。开心！！感觉今天可以少摸鱼一小时😆"},
+    {"x": 0.52, "y": 0.48, "d": 0.50, "label": "neutral", "day_idx": 0, "is_anchor": false, "is_outlier": false, "text": "上午摸鱼🐟中。。新项目还没分配具体需求 先看看八卦再说"},
+    {"x": 0.45, "y": 0.52, "d": 0.42, "label": "neutral", "day_idx": 0, "is_anchor": false, "is_outlier": false, "text": "工位上的多肉该浇水了。。周末没人管居然还活着。。顽强"},
+    {"x": 0.55, "y": 0.42, "d": 0.52, "label": "happy", "day_idx": 1, "is_anchor": false, "is_outlier": false, "text": "下午摸鱼🐟点杯奶茶。。快乐肥宅😆 芝士桃桃 yyds 永远的神"},
+    {"x": 0.50, "y": 0.50, "d": 0.48, "label": "neutral", "day_idx": 1, "is_anchor": false, "is_outlier": false, "text": "周三要deadline了。。还没开始做😅 谁能救救我的项目啊"},
+    {"x": 0.52, "y": 0.45, "d": 0.50, "label": "neutral", "day_idx": 1, "is_anchor": false, "is_outlier": false, "text": "期待周末出游。。激动😆 做了三小时攻略了腿都跑断了真的"},
+    {"x": 0.25, "y": 0.72, "d": 0.20, "label": "sad", "day_idx": 2, "is_anchor": false, "is_outlier": false, "text": "deadline还有两小时。。做不完了。。救命啊😇 谁来救救孩子吧"},
+    {"x": 0.22, "y": 0.75, "d": 0.18, "label": "fear", "day_idx": 2, "is_anchor": false, "is_outlier": false, "text": "要赶不上了。。焦虑得心跳加速。。感觉心脏要从嗓子眼跳出来了😭"},
+    {"x": 0.28, "y": 0.70, "d": 0.25, "label": "sad", "day_idx": 2, "is_anchor": false, "is_outlier": false, "text": "连续熬夜第三天了。。真的好累。。现在看到代码就想吐。。生理性反胃"},
+    {"x": 0.18, "y": 0.78, "d": 0.12, "label": "fear", "day_idx": 2, "is_anchor": true, "is_outlier": true, "anchor_type": "lowest", "text": "真的崩溃了。。项目要延期了。。领导脸色好难看😨 谁懂那种做好久然后告诉你要重来的感觉"},
+    {"x": 0.35, "y": 0.55, "d": 0.32, "label": "angry", "day_idx": 2, "is_anchor": false, "is_outlier": false, "text": "服了。。这破需求一直改。。谁受得了🙄🙄 连续改了8遍了真的栓Q"},
+    {"x": 0.30, "y": 0.52, "d": 0.28, "label": "sad", "day_idx": 2, "is_anchor": false, "is_outlier": false, "text": "周三真的太难了。。谁懂啊😭😭 早上9点改到凌晨3点的痛"},
+    {"x": 0.45, "y": 0.48, "d": 0.42, "label": "neutral", "day_idx": 3, "is_anchor": false, "is_outlier": false, "text": "周四周四。。摸鱼等周五😆😆 终于周三过去了。。活着真好"},
+    {"x": 0.50, "y": 0.42, "d": 0.48, "label": "happy", "day_idx": 3, "is_anchor": false, "is_outlier": false, "text": "昨天deadline过了！！存活！！💪💪 连续加班一周居然还活着。。不容易"},
+    {"x": 0.42, "y": 0.50, "d": 0.40, "label": "neutral", "day_idx": 3, "is_anchor": false, "is_outlier": false, "text": "终于周五了。。这周太漫长了😔 感觉过了一个世纪。。真的累"},
+    {"x": 0.65, "y": 0.58, "d": 0.62, "label": "happy", "day_idx": 4, "is_anchor": false, "is_outlier": false, "text": "周五啦！！！明天出游！！！激动得睡不着😆😆😆 攻略做了18页PDF谁懂"},
+    {"x": 0.60, "y": 0.52, "d": 0.58, "label": "happy", "day_idx": 4, "is_anchor": false, "is_outlier": false, "text": "下班咯！！！去另一个城市看风景！！！ 三个小时高铁 出发！！"},
+    {"x": 0.55, "y": 0.55, "d": 0.52, "label": "neutral", "day_idx": 4, "is_anchor": false, "is_outlier": false, "text": "在高铁上了。。信号不太好😅 提前下好剧是对的。。还好有流量"},
+    {"x": 0.85, "y": 0.70, "d": 0.80, "label": "happy", "day_idx": 5, "is_anchor": true, "is_outlier": true, "anchor_type": "highest", "text": "这个风景真的绝绝子啊！！！太美了😭😭😭 相机根本停不下来。。每一帧都是壁纸"},
+    {"x": 0.88, "y": 0.65, "d": 0.82, "label": "happy", "day_idx": 5, "is_anchor": false, "is_outlier": false, "text": "拍了一百张照片。。。每张都好好看啊😆😆 選擇困難症發作　根本刪不掉"},
+    {"x": 0.80, "y": 0.58, "d": 0.75, "label": "happy", "day_idx": 5, "is_anchor": false, "is_outlier": false, "text": "当地美食真的绝绝子！！！吃到肚歪😋😋 排队两小时但是值得！！的灵魂"},
+    {"x": 0.82, "y": 0.52, "d": 0.78, "label": "happy", "day_idx": 5, "is_anchor": false, "is_outlier": false, "text": "今天真的好开心好开心！！这趟来得值！！😭😭 虽然机票贵但是快乐是无价的"},
+    {"x": 0.78, "y": 0.55, "d": 0.72, "label": "happy", "day_idx": 5, "is_anchor": false, "is_outlier": false, "text": "和朋友们一起看日出。。浪漫哭了。。😭😭 五点起来但是看到那一瞬间什么都值得了"},
+    {"x": 0.70, "y": 0.48, "d": 0.65, "label": "happy", "day_idx": 5, "is_anchor": false, "is_outlier": false, "text": "景区人少拍照就是爽。。随便拍都出片！！📸 原图生图能打系列"},
+    {"x": 0.75, "y": 0.45, "d": 0.70, "label": "happy", "day_idx": 5, "is_anchor": false, "is_outlier": false, "text": "最后一张日落。。舍不得走了💔 明天就要回去了。。快乐的时光总是这么短"},
+    {"x": 0.65, "y": 0.50, "d": 0.62, "label": "happy", "day_idx": 6, "is_anchor": false, "is_outlier": false, "text": "返程中。。虽然累但值得😭😭 相机里800张照片。。内存满了但快乐满了"},
+    {"x": 0.50, "y": 0.55, "d": 0.48, "label": "neutral", "day_idx": 6, "is_anchor": false, "is_outlier": false, "text": "周日最后几小时。。不想面对周一😔 假期综合症又开始了。。。😭"},
+    {"x": 0.45, "y": 0.52, "d": 0.42, "label": "fear", "day_idx": 6, "is_anchor": false, "is_outlier": false, "text": "明天周一。。焦虑得睡不着😰 不想上班怎么办。。。在线等一个奇迹"}
+  ],
+  "valence_box": [
+    {"day": "周一", "min": 0.35, "q1": 0.42, "median": 0.48, "q3": 0.58, "max": 0.65, "outliers": []},
+    {"day": "周二", "min": 0.40, "q1": 0.48, "median": 0.55, "q3": 0.62, "max": 0.70, "outliers": []},
+    {"day": "周三", "min": 0.32, "q1": 0.40, "median": 0.48, "q3": 0.58, "max": 0.65, "outliers": []},
+    {"day": "周四", "min": 0.15, "q1": 0.20, "median": 0.30, "q3": 0.40, "max": 0.50, "outliers": [0.72]},
+    {"day": "周五", "min": 0.50, "q1": 0.58, "median": 0.65, "q3": 0.72, "max": 0.78, "outliers": []},
+    {"day": "周六", "min": 0.70, "q1": 0.78, "median": 0.85, "q3": 0.88, "max": 0.92, "outliers": []},
+    {"day": "周日", "min": 0.50, "q1": 0.60, "median": 0.70, "q3": 0.78, "max": 0.82, "outliers": []}
+  ],
+  "social_stats": {
+    "positive": {"avg_likes": 55, "avg_comments": 15},
+    "neutral": {"avg_likes": 16, "avg_comments": 5},
+    "negative": {"avg_likes": 18, "avg_comments": 14}
+  },
+  "posts": [
+    {"id": "1", "content": "新的一周开始了。。真的不想面对😔 周一综合症谁得谁懂。。又要当打工人了", "day": "周一", "time": "07:30", "v": 0.48, "a": 0.55, "d": 0.45, "emotion": "neutral", "confidence": 0.68, "cause": "工作状态", "rule": null, "step": 2, "likes": 25, "comments": 6},
+    {"id": "2", "content": "周一起不来。。闹钟又没叫醒我😅 连续第三天迟到这个月全勤没了。。栓Q", "day": "周一", "time": "08:15", "v": 0.40, "a": 0.58, "d": 0.38, "emotion": "sad", "confidence": 0.75, "cause": "作息问题", "rule": null, "step": 2, "likes": 18, "comments": 4},
+    {"id": "3", "content": "周一早上被夸了方案写得不错。。开心！！感觉今天可以少摸鱼一小时😆", "day": "周一", "time": "10:20", "v": 0.58, "a": 0.45, "d": 0.55, "emotion": "happy", "confidence": 0.82, "cause": "工作成就", "rule": null, "step": 2, "likes": 45, "comments": 8},
+    {"id": "4", "content": "上午摸鱼🐟中。。新项目还没分配具体需求 先看看八卦再说🙈", "day": "周一", "time": "11:30", "v": 0.52, "a": 0.48, "d": 0.50, "emotion": "neutral", "confidence": 0.62, "cause": "工作状态", "rule": null, "step": 2, "likes": 22, "comments": 4},
+    {"id": "5", "content": "工位上的多肉该浇水了。。周末没人管居然还活着。。顽强生命力真的瑞思拜", "day": "周一", "time": "15:45", "v": 0.45, "a": 0.52, "d": 0.42, "emotion": "neutral", "confidence": 0.55, "cause": "生活趣味", "rule": null, "step": 2, "likes": 12, "comments": 2},
+    {"id": "6", "content": "下午摸鱼🐟点杯奶茶。。快乐肥宅😆 芝士桃桃 yyds 永远的神", "day": "周二", "time": "14:20", "v": 0.55, "a": 0.42, "d": 0.52, "emotion": "happy", "confidence": 0.78, "cause": "休闲时刻", "rule": null, "step": 2, "likes": 38, "comments": 8},
+    {"id": "7", "content": "周三要deadline了。。还没开始做😅 谁来救救我的项目啊😭", "day": "周二", "time": "16:30", "v": 0.50, "a": 0.50, "d": 0.48, "emotion": "neutral", "confidence": 0.72, "cause": "工作压力", "rule": null, "step": 2, "likes": 28, "comments": 6},
+    {"id": "8", "content": "期待周末出游。。激动😆 攻略做了三天了。。高铁票酒店行程安排得明明白白", "day": "周二", "time": "18:45", "v": 0.52, "a": 0.45, "d": 0.50, "emotion": "neutral", "confidence": 0.68, "cause": "期待活动", "rule": null, "step": 2, "likes": 35, "comments": 7},
+    {"id": "9", "content": "deadline还有两小时。。做不完了。。救命啊😇 真的要在deadline上跳舞了", "day": "周三", "time": "10:30", "v": 0.25, "a": 0.72, "d": 0.20, "emotion": "sad", "confidence": 0.85, "cause": "工作压力", "rule": "规则03", "step": 2, "likes": 15, "comments": 8},
+    {"id": "10", "content": "要赶不上了。。焦虑得心跳加速。。感觉心脏要从嗓子眼跳出来了😭😭", "day": "周三", "time": "13:15", "v": 0.22, "a": 0.75, "d": 0.18, "emotion": "fear", "confidence": 0.88, "cause": "工作压力", "rule": "规则01", "step": 2, "likes": 12, "comments": 6},
+    {"id": "11", "content": "连续熬夜第三天了。。真的好累。。现在看到代码就想吐。。生理性反胃", "day": "周三", "time": "19:45", "v": 0.28, "a": 0.70, "d": 0.25, "emotion": "sad", "confidence": 0.82, "cause": "工作压力", "rule": "规则03", "step": 2, "likes": 20, "comments": 10},
+    {"id": "12", "content": "真的崩溃了。。项目要延期了。。领导脸色好难过😨 谁懂那种做好久然后告诉你要重来的感觉", "day": "周三", "time": "21:30", "v": 0.18, "a": 0.78, "d": 0.12, "emotion": "fear", "confidence": 0.90, "cause": "工作批评", "rule": "规则01", "step": 2, "likes": 25, "comments": 18},
+    {"id": "13", "content": "服了。。这破需求一直改。。谁受得了🙄🙄 连续改了8遍了真的栓Q", "day": "周三", "time": "16:20", "v": 0.35, "a": 0.55, "d": 0.32, "emotion": "angry", "confidence": 0.78, "cause": "工作批评", "rule": null, "step": 2, "likes": 18, "comments": 12},
+    {"id": "14", "content": "周三真的太难了。。谁懂啊😭😭 早上9点改到凌晨3点的痛谁懂", "day": "周三", "time": "20:00", "v": 0.30, "a": 0.52, "d": 0.28, "emotion": "sad", "confidence": 0.75, "cause": "工作压力", "rule": null, "step": 2, "likes": 22, "comments": 14},
+    {"id": "15", "content": "周四周四。。摸鱼等周五😆😆 终于周三过去了。。活着真好啊", "day": "周四", "time": "10:15", "v": 0.45, "a": 0.48, "d": 0.42, "emotion": "neutral", "confidence": 0.65, "cause": "时间焦虑", "rule": null, "step": 2, "likes": 32, "comments": 5},
+    {"id": "16", "content": "昨天deadline过了！！存活！！💪💪 连续加班一周居然还活着。。不容易", "day": "周四", "time": "09:30", "v": 0.50, "a": 0.42, "d": 0.48, "emotion": "happy", "confidence": 0.80, "cause": "工作成就", "rule": null, "step": 2, "likes": 42, "comments": 8},
+    {"id": "17", "content": "终于周五了。。这周太漫长了😔 感觉过了一个世纪。。真的累麻了", "day": "周四", "time": "15:20", "v": 0.42, "a": 0.50, "d": 0.40, "emotion": "neutral", "confidence": 0.68, "cause": "时间焦虑", "rule": null, "step": 2, "likes": 25, "comments": 6},
+    {"id": "18", "content": "周五啦！！！明天出游！！！激动得睡不着😆😆😆 攻略做了18页PDF谁懂", "day": "周五", "time": "18:30", "v": 0.65, "a": 0.58, "d": 0.62, "emotion": "happy", "confidence": 0.86, "cause": "期待活动", "rule": null, "step": 2, "likes": 55, "comments": 12},
+    {"id": "19", "content": "下班咯！！！去另一个城市看风景！！！ 三个小时高铁 出发咯!!", "day": "周五", "time": "19:00", "v": 0.60, "a": 0.52, "d": 0.58, "emotion": "happy", "confidence": 0.82, "cause": "休闲活动", "rule": null, "step": 2, "likes": 48, "comments": 10},
+    {"id": "20", "content": "在高铁上了。。信号不太好😅 提前下好剧是对的。。还好有流量", "day": "周五", "time": "20:15", "v": 0.55, "a": 0.55, "d": 0.52, "emotion": "neutral", "confidence": 0.70, "cause": "出行状态", "rule": null, "step": 2, "likes": 18, "comments": 4},
+    {"id": "21", "content": "这个风景真的绝绝子啊！！！太美了😭😭😭 相机根本停不下来。。每一帧都是壁纸啊", "day": "周六", "time": "10:45", "v": 0.85, "a": 0.70, "d": 0.80, "emotion": "happy", "confidence": 0.92, "cause": "自然美景", "rule": null, "step": 2, "likes": 85, "comments": 22},
+    {"id": "22", "content": "拍了一百张照片。。。每张都好好看啊😆😆 选择困难症发作 根本删不掉", "day": "周六", "time": "12:30", "v": 0.88, "a": 0.65, "d": 0.82, "emotion": "happy", "confidence": 0.90, "cause": "拍照乐趣", "rule": null, "step": 2, "likes": 72, "comments": 18},
+    {"id": "23", "content": "当地美食真的绝绝子！！！吃到肚歪😋😋 排队两小时但是值得的灵魂", "day": "周六", "time": "13:15", "v": 0.80, "a": 0.58, "d": 0.75, "emotion": "happy", "confidence": 0.88, "cause": "美食体验", "rule": null, "step": 2, "likes": 65, "comments": 15},
+    {"id": "24", "content": "今天真的好开心好开心！！这趟来得值！！😭😭 虽然机票贵但是快乐是无价的", "day": "周六", "time": "15:00", "v": 0.82, "a": 0.52, "d": 0.78, "emotion": "happy", "confidence": 0.92, "cause": "多重愉悦", "rule": null, "step": 2, "likes": 58, "comments": 14},
+    {"id": "25", "content": "和朋友们一起看日出。。浪漫哭了。。😭😭 五点起来但是看到那一瞬间什么都值得了", "day": "周六", "time": "06:00", "v": 0.78, "a": 0.55, "d": 0.72, "emotion": "happy", "confidence": 0.88, "cause": "自然美景", "rule": null, "step": 2, "likes": 78, "comments": 20},
+    {"id": "26", "content": "景区人少拍照就是爽。。随便拍都出片！！📸 原图生图能打系列", "day": "周六", "time": "14:20", "v": 0.70, "a": 0.48, "d": 0.65, "emotion": "happy", "confidence": 0.85, "cause": "拍照乐趣", "rule": null, "step": 2, "likes": 52, "comments": 10},
+    {"id": "27", "content": "最后一张日落。。舍不得走了💔 明天就要回去了。。快乐的时光总是这么短", "day": "周六", "time": "18:30", "v": 0.75, "a": 0.45, "d": 0.70, "emotion": "happy", "confidence": 0.82, "cause": "自然美景", "rule": null, "step": 2, "likes": 45, "comments": 12},
+    {"id": "28", "content": "返程中。。虽然累但值得😭😭 相机里800张照片。。内存满了但快乐满了", "day": "周日", "time": "11:00", "v": 0.65, "a": 0.50, "d": 0.62, "emotion": "happy", "confidence": 0.80, "cause": "休闲活动", "rule": null, "step": 2, "likes": 42, "comments": 8},
+    {"id": "29", "content": "周日最后几小时。。不想面对周一😔 假期综合症又开始了。。。😭", "day": "周日", "time": "16:30", "v": 0.50, "a": 0.55, "d": 0.48, "emotion": "neutral", "confidence": 0.72, "cause": "周一焦虑", "rule": null, "step": 2, "likes": 28, "comments": 10},
+    {"id": "30", "content": "明天周一。。焦虑得睡不着😰 不想上班怎么办。。。在线等一个奇迹", "day": "周日", "time": "22:30", "v": 0.45, "a": 0.52, "d": 0.42, "emotion": "fear", "confidence": 0.78, "cause": "表现焦虑", "rule": null, "step": 2, "likes": 15, "comments": 6}
+  ]
+}
